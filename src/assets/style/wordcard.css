@@ -1,0 +1,17 @@
+.cardsWords{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.wordCard{
+    width: 200px;
+    padding: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid;
+    color: #EFE1D1;
+    background-color: #331D2C;
+}
+.wordCard div, .wordCard h3{
+    padding: 5px;
+}
