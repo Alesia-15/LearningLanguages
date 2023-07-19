@@ -1,0 +1,16 @@
+$colorVeryDark: #3c4b86;
+$colorDark: #677db9;
+$colorLight: #efebff;
+$colorVeryLight: #FFF2F2;
+
+body{
+    background-color: $colorVeryLight;
+}
+h1, h2, h3{
+    margin: 0;
+}
+.container{
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 20px;
+}

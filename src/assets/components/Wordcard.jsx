@@ -1,12 +1,11 @@
-import "../style/wordcard.css"
+import "../style/wordcard.scss"
 
 function Wordcard (props){
     return(
         <div className='wordCard'>            
-            <h3>{props.word}</h3>    
-            <div>{props.meaning}</div>
+            <h3>{props.english}</h3>    
             <div>{props.transcription}</div>
-            <div>{props.translation}</div>
+            <div>{props.russian}</div>
             <div>{props.topic}</div>           
         </div>
     )

@@ -1,16 +1,23 @@
+@import "./general.scss";
+
 header{
+    padding: 10px;
+    background: url(../images/background.jpg);
+    background-position: center;
+}
+header .container{
     display: flex;
     justify-content: space-around;
-    padding: 10px;
 }
 h1{
     padding: 20px 10px;
     text-align: center;
-    color: #331D2C;
+    color: $colorVeryDark;
     margin: auto 0;
 }
-img{
+header img{
     margin: auto 0;
     height: 100px;
     border-radius: 20px;
 }
+

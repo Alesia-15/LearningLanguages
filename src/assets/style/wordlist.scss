@@ -1,0 +1,54 @@
+@import "./general.scss";
+
+h2{
+    padding: 20px 10px;
+    text-align: center;
+    color: $colorVeryDark;    
+}
+table.wordList{
+    width: 100%;
+    margin: 0 auto;
+    font-size: 18px;
+    border-collapse: collapse;
+    color: $colorDark;
+    background-color: $colorLight;
+}
+thead {
+    font-weight: 700;
+    text-align: center;
+}
+td{
+    padding: 5px;
+    border: 1px solid;
+}
+tbody tr td:first-child{
+    font-weight: 500;
+}
+tbody tr td:last-child{
+    text-align: center;
+}
+.btnPen, .btnDelete, .btnSave{
+    padding: 5px;
+    margin: 0px 7px;
+    height: 30px;
+    width: 30px;
+    border: none;
+    cursor: pointer;
+}
+.btnPen{
+    background: no-repeat center/80% url(../images/pen.svg);
+}
+.btnDelete{
+    background: no-repeat center/80% url(../images/delete.svg);
+}
+.btnSave{
+    display: none;
+    background: no-repeat center/80% url(../images/save.svg);
+}
+.selected{
+    border: 3px solid;
+    background-color: $colorVeryLight;
+}
+.selected .btnSave{
+    display: inline-block;
+}

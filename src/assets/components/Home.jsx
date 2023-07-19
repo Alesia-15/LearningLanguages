@@ -1,11 +1,19 @@
-import "../style/home.css"
+import "../style/home.scss"
 
 function Home (){
     return(
-    <header>
-        <h1>Название приложения</h1>
-        <img src="https://apkshki.com/storage/874/icon_5dcfff28f40b0_874_w256.png" alt="logo"></img>
-    </header>
+      <>
+        <header>
+        <div className="container">
+          <h1>Translator EN-RU</h1>
+          <img
+            src="https://mp-device.com/wp-content/uploads/2014/12/Govorite-legko-Russkij-Anglo-slovar--256x256.png"
+            alt="logo"
+          ></img>
+          </div>
+        </header>
+        <footer></footer>
+      </>
     )
 }
 

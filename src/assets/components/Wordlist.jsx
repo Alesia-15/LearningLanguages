@@ -1,14 +1,20 @@
-import "../style/wordlist.css"
+import "../style/wordlist.scss"
 
 function Wordlist (props){
     return(
-        <div className='wordList'>            
-            <h3>{props.word}</h3>    
-            <div>{props.meaning}</div>
-            <div>{props.transcription}</div>
-            <div>{props.translation}</div>
-            <div>{props.topic}</div>           
-        </div>
+        <>
+        <tr className={`${(props.isSelected&&"selected")}`}>
+          <td>{props.english}</td>
+          <td>{props.transcription}</td>
+          <td>{props.russian}</td>
+          <td>{props.topic}</td>
+          <td>
+            <button className="btnSave"></button>
+            <button className="btnPen"></button>
+            <button className="btnDelete"></button>
+          </td>
+        </tr>
+      </>
     )
 }
 
