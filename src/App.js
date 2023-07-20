@@ -1,8 +1,8 @@
 import "./assets/style/App.css";
 import "./assets/style/general.scss";
-import Wordlist from "./assets/components/Wordlist";
-import Wordcard from "./assets/components/Wordcard";
-import Home from "./assets/components/Home";
+import Wordlist from "./assets/components/Wordlist/Wordlist";
+import Wordcard from "./assets/components/Wordcard/Wordcard";
+import Home from "./assets/components/Home/Home";
 import data from "./assets/data.json";
 
 console.log(data[0]);

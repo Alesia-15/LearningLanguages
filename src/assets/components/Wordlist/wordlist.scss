@@ -1,4 +1,4 @@
-@import "./general.scss";
+@import "./src/assets/style/general.scss";
 
 h2{
     padding: 20px 10px;
@@ -30,25 +30,24 @@ tbody tr td:last-child{
 .btnPen, .btnDelete, .btnSave{
     padding: 5px;
     margin: 0px 7px;
-    height: 30px;
-    width: 30px;
     border: none;
     cursor: pointer;
 }
-.btnPen{
-    background: no-repeat center/80% url(../images/pen.svg);
-}
-.btnDelete{
-    background: no-repeat center/80% url(../images/delete.svg);
-}
 .btnSave{
     display: none;
-    background: no-repeat center/80% url(../images/save.svg);
+}
+.btn img{
+    width: 30px;
+    height: 30px;
+}
+table button{
+    background-color: $colorLight;
 }
 .selected{
     border: 3px solid;
     background-color: $colorVeryLight;
 }
-.selected .btnSave{
+.selected button{
     display: inline-block;
+    background-color: $colorVeryLight;
 }

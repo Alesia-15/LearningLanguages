@@ -1,4 +1,4 @@
-import "../style/wordcard.scss"
+import "./wordcard.scss";
 
 function Wordcard (props){
     return(
