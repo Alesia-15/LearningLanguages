@@ -1,18 +1,17 @@
 import "./assets/style/App.css";
 import "./assets/style/general.scss";
+import data from "./assets/data.json";
 import Wordlist from "./assets/components/Wordlist/Wordlist";
 import Wordcard from "./assets/components/Wordcard/Wordcard";
-import Home from "./assets/components/Home/Home";
-import data from "./assets/data.json";
-
-console.log(data[0]);
+import Header from "./assets/components/Header/Header";
+import Footer from "./assets/components/Footer/Footer";
 
 function App() {
   return (
     <>
-      <Home></Home>
+      <Header></Header>
       <div className="container">
-        <h2 className="table">Список слов</h2>
+        <h2 id="list">Список слов</h2>
         <table className="wordList">
           <thead>
             <tr>
@@ -35,7 +34,7 @@ function App() {
             ))}
           </tbody>
         </table>
-        <h2>Карточки слов</h2>
+        <h2 id="cards">Карточки слов</h2>
         <div className="cardsWords">
           {data.map((words) => (
             <Wordcard
@@ -47,6 +46,7 @@ function App() {
           ))}
         </div>
       </div>
+      <Footer></Footer>
     </>
   );
 }
