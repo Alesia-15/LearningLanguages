@@ -7,7 +7,7 @@ import del from "../../images/delete.svg"
 function Wordlist (props){
     return(
         <>
-        <tr className={`${(props.isSelected&&"selected")}`}>
+        <tr className={`rowList${(props.isSelected ? " selected": "")}`}>
           <td>{props.english}</td>
           <td>{props.transcription}</td>
           <td>{props.russian}</td>
