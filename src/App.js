@@ -1,5 +1,5 @@
 import "./assets/style/App.css";
-import "./assets/style/general.scss";
+import "./assets/style/variables.scss";
 import data from "./assets/data.json";
 import Wordlist from "./assets/components/Wordlist/Wordlist";
 import Wordcard from "./assets/components/Wordcard/Wordcard";

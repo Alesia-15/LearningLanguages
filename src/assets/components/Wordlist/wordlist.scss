@@ -1,4 +1,4 @@
-@import "./src/assets/style/general.scss";
+@import "./src/assets/style/variables.scss";
 
 h2{
     padding: 20px 10px;
@@ -16,7 +16,7 @@ table.wordList{
 thead {
     font-weight: 700;
     text-align: center;
-    border: 3px solid;
+    border: double $colorVeryDark;
 }
 td{
     padding: 5px;
@@ -28,27 +28,30 @@ tbody tr td:first-child{
 tbody tr td:last-child{
     text-align: center;
 }
-.btnPen, .btnDelete, .btnSave{
+button{
     padding: 5px;
     margin: 0px 7px;
     border: none;
     cursor: pointer;
-}
-.btnSave{
-    display: none;
+    background-color: $colorLight;
 }
 .btn img{
     width: 30px;
     height: 30px;
 }
-table button{
-    background-color: $colorLight;
-}
 .selected{
-    border: 3px solid;
+    border: double $colorVeryDark;
     background-color: $colorVeryLight;
 }
 .selected button{
     display: inline-block;
+    background-color: $colorVeryLight;
+}
+input{
+    padding: 10px 5px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: $colorDark;
     background-color: $colorVeryLight;
 }
