@@ -4,13 +4,7 @@ function Header (){
     return(
       <header>
         <div className="container">
-          <div className="head">
-            <h1>Translator EN-RU</h1>
-            <img
-            src="https://mp-device.com/wp-content/uploads/2014/12/Govorite-legko-Russkij-Anglo-slovar--256x256.png"
-            alt="logo"
-            ></img>
-          </div>
+          <h1>Translator EN-RU</h1>
           <nav>
             <ul>
               <li>

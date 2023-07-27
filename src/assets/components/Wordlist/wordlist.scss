@@ -1,22 +1,27 @@
 @import "./src/assets/style/variables.scss";
 
 h2{
-    padding: 20px 10px;
+    padding: 30px 10px;
     text-align: center;
+    font-size: 24px;
     color: $colorVeryDark;    
 }
 table.wordList{
     width: 100%;
     margin: 0 auto;
     font-size: 18px;
-    border-collapse: collapse;
+    //border-collapse: collapse;
     color: $colorDark;
     background-color: $colorLight;
 }
 thead {
+    font-size: 20px;
     font-weight: 700;
     text-align: center;
-    border: double $colorVeryDark;
+    //border: double $colorDark;
+}
+thead td{
+    border: double $colorDark;
 }
 td{
     padding: 5px;
