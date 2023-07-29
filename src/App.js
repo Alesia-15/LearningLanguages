@@ -1,5 +1,4 @@
 import "./assets/style/App.css";
-import "./assets/style/variables.scss";
 import data from "./assets/data.json";
 import Wordlist from "./assets/components/Wordlist/Wordlist";
 import Wordcard from "./assets/components/Wordcard/Wordcard";
@@ -25,6 +24,7 @@ function App() {
           <tbody>
             {data.map((words) => (
               <Wordlist
+                key={words.id}
                 english={words.english}
                 transcription={words.transcription}
                 russian={words.russian}
@@ -38,6 +38,7 @@ function App() {
         <div className="cardsWords">
           {data.map((words) => (
             <Wordcard
+              key={words.id}
               english={words.english}
               transcription={words.transcription}
               russian={words.russian}
