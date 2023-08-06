@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import "./wordlist.scss"
-import save from "../../images/save.svg"
-import pen from "../../images/pen.svg"
-import del from "../../images/delete.svg"
-import close from "../../images/close.svg"
+import React, { useState } from "react";
+import "./wordlist.scss";
+import save from "../../images/save.svg";
+import pen from "../../images/pen.svg";
+import del from "../../images/delete.svg";
+import close from "../../images/close.svg";
 
 function Wordlist(props) {
   const [passed, setPassed] = useState(props.passed || false);
@@ -55,5 +55,4 @@ function Wordlist(props) {
   );
 }
 
-
-export default Wordlist
+export default Wordlist;

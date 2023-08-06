@@ -1,5 +1,16 @@
 @import "./src/assets/style/variables.scss";
 
+.wordCardContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.wordCardContainer a{
+    margin: 0 20px;
+    font-size: 40px;
+    color: $colorVeryDark;
+    cursor: pointer;
+}
 .cardsWords{
     display: flex;
     justify-content: center;
@@ -34,4 +45,7 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
+}
+.indexCard{
+    text-align: center;
 }
