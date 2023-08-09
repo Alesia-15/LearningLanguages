@@ -9,7 +9,7 @@ function Wordcard(props) {
 
   return (
     <div className="wordCardContainer">
-      <a onClick={props.goBack}>&#8656;</a>
+      <button onClick={props.goBack}>&#8656;</button>
       <div>
         <div className="wordCard">
           <h3>{props.english}</h3>
@@ -24,7 +24,7 @@ function Wordcard(props) {
         </div>
         <div className="indexCard">{props.index}</div>
       </div>
-      <a onClick={props.goForward}>&#8658;</a>
+      <button onClick={props.goForward}>&#8658;</button>
     </div>
   );
 }

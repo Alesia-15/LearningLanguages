@@ -7,6 +7,16 @@ import Header from "./assets/components/Header/Header";
 import Footer from "./assets/components/Footer/Footer";
 
 function App() {
+  // defaultProps
+  Wordcard.defaultProps = {
+    id: 1,
+    english: "language",
+    transcription: "[ˈlæŋɡwɪdʒ]",
+    russian: "язык",
+    topic: "существительное",
+  };
+
+  // Переключение карточек
   let [index, setIndex] = useState(data.index || 0);
   const forwardClick = () => {
     index++;
@@ -16,12 +26,11 @@ function App() {
     setIndex(index);
   };
   const backClick = () => {
-    index = index - 1;
+    index--;
     if (index == "-1") {
       index = data.length - 1;
     }
     setIndex(index);
-    console.log(index);
   };
 
   return (
