@@ -1,0 +1,19 @@
+@import "./src/assets/style/variables.scss";
+
+.error {
+  h1 {
+    text-align: center;
+    font-size: 40px;
+    color: $colorDark;
+  }
+  h2 {
+    text-align: center;
+    font-size: 150px;
+    color: $colorVeryDark;
+  }
+  p {
+    text-align: center;
+    font-size: 30px;
+    color: $colorDark;
+  }
+}

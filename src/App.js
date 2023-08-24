@@ -4,6 +4,7 @@ import "./assets/style/App.scss";
 import data from "./assets/data.json";
 import Wordlist from "./assets/components/Wordlist/Wordlist";
 import Wordcard from "./assets/components/Wordcard/Wordcard";
+import Error from "./assets/components/Error/Error";
 
 function App() {
   // defaultProps
@@ -57,7 +58,7 @@ function App() {
             <Route
               path="/game"
               element={
-                <div className="cardsWords">
+                <div className="wordsCards">
                   <h2 id="cards">Карточки слов</h2>
                   <Wordcard
                     key={data[index].id}
@@ -102,6 +103,7 @@ function App() {
                 </div>
               }
             />
+            <Route path="*" element={<Error />} />
           </Routes>
         </div>
       </main>

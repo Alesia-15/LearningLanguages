@@ -1,54 +1,61 @@
 @import "./src/assets/style/variables.scss";
 
-.wordCardContainer{
+.wordsCards {
+  margin: 20px;
+  h2 {
+    padding: 30px 10px;
+    text-align: center;
+    font-size: 24px;
+    color: $colorVeryDark;
+  }
+  .wordCardContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.wordCardContainer button{
-    padding: 0 20px;
-    margin: 0 20px;
-    font-size: 40px;
-    color: $colorVeryDark;
-    border: 1px solid;
-    border-radius: 15px;
-    cursor: pointer;
-}
-.cardsWords{
-    margin: 270px 20px 80px;
-}
-.wordCard{
-    width: 170px;
-    height: 230px;
-    padding: 10px;
-    margin: 15px 10px;
-    box-sizing: border-box;
-    text-align: center;
-    border: 1px solid;
-    border-radius: 15px;
-    color: $colorDark;
-    background-color: $colorVeryLight;
-    box-shadow: 10px 10px 10px 0 $colorVeryDark;
-}
-.wordCard h3{
-    padding: 20px 5px 5px;
-}
-.transcr{
-    padding: 0 5px 20px;
-}
-.check{
-    margin: 40px 5px 20px;
-}
-.check button{
-    padding: 8px 15px;
-    font-size: 16px;
-    color: $colorVeryLight;
-    background-color: $colorDark;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.indexCard{
-    text-align: center;
-    color: $colorVeryDark;
+    button {
+      padding: 0 20px;
+      margin: 0 20px;
+      font-size: 40px;
+      color: $colorVeryDark;
+      background-color: $colorVeryLight;
+      border: 1px solid;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    .wordCard {
+      width: 170px;
+      height: 230px;
+      padding: 10px;
+      margin: 15px 10px;
+      box-sizing: border-box;
+      text-align: center;
+      border: 1px solid;
+      border-radius: 15px;
+      color: $colorDark;
+      background-color: $colorVeryLight;
+      box-shadow: 10px 10px 10px 0 $colorVeryDark;
+      h3 {
+        padding: 20px 5px 5px;
+      }
+      .transcr {
+        padding: 0 5px 20px;
+      }
+      .check {
+        margin: 40px 5px 20px;
+        button {
+          padding: 8px 15px;
+          font-size: 16px;
+          color: $colorVeryLight;
+          background-color: $colorDark;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+    .indexCard {
+      text-align: center;
+      color: $colorVeryDark;
+    }
+  }
 }
