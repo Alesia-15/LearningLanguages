@@ -57,7 +57,9 @@
         }
       }
     }
-    .indexCard {
+    .indexCard,
+    .learnedWords {
+      margin: 5px;
       text-align: center;
       color: $colorVeryDark;
     }

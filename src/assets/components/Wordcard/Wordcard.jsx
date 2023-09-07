@@ -5,6 +5,7 @@ const Wordcard = forwardRef((props, ref) => {
   const [passed, setPassed] = useState(props.passed || false);
   const handleClick = () => {
     setPassed(!passed);
+    props.countWords();
   };
 
   return (

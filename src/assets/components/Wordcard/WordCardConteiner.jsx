@@ -24,6 +24,13 @@ function WordCardConteiner() {
   const ref = useRef();
   useEffect(() => ref.current.focus(), []);
 
+  // Выучено слов
+  let [count, setCount] = useState(0);
+  const countWords = () => {
+    count++;
+    setCount(count);
+  };
+
   return (
     <div className="wordsCards">
       <h2 id="cards">Карточки слов</h2>
@@ -36,8 +43,10 @@ function WordCardConteiner() {
             transcription={data[index].transcription}
             russian={data[index].russian}
             ref={ref}
+            countWords={countWords}
           />
           <div className="indexCard">{`${data[index].id} / ${data.length}`}</div>
+          <div className="learnedWords">{`Выучено слов: ${count}`}</div>
         </div>
         <button onClick={forwardClick}>&#8658;</button>
       </div>
