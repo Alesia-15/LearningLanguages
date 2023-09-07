@@ -23,8 +23,8 @@
       cursor: pointer;
     }
     .wordCard {
-      width: 170px;
-      height: 230px;
+      min-width: 185px;
+      height: 250px;
       padding: 10px;
       margin: 15px 10px;
       box-sizing: border-box;
@@ -50,6 +50,10 @@
           border: none;
           border-radius: 10px;
           cursor: pointer;
+        }
+        button:focus {
+          background-color: $colorVeryDark;
+          outline: none;
         }
       }
     }

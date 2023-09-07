@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import "./wordcard.scss";
 
-function Wordcard(props) {
+const Wordcard = forwardRef((props, ref) => {
   const [passed, setPassed] = useState(props.passed || false);
   const handleClick = () => {
     setPassed(!passed);
@@ -15,11 +15,13 @@ function Wordcard(props) {
         {passed ? (
           <div>{props.russian}</div>
         ) : (
-          <button onClick={handleClick}>Проверить</button>
+          <button onClick={handleClick} ref={ref}>
+            Проверить
+          </button>
         )}
       </div>
     </div>
   );
-}
+});
 
 export default Wordcard;

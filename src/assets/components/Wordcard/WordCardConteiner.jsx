@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import data from "../../data.json";
 import WordCard from "./WordCard";
 
-function WordCardConteiner(props) {
+function WordCardConteiner() {
   // Переключение карточек
   let [index, setIndex] = useState(data.index || 0);
   const forwardClick = () => {
@@ -20,6 +20,10 @@ function WordCardConteiner(props) {
     setIndex(index);
   };
 
+  // Фокус кнопки "Проверить"
+  const ref = useRef();
+  useEffect(() => ref.current.focus(), []);
+
   return (
     <div className="wordsCards">
       <h2 id="cards">Карточки слов</h2>
@@ -31,6 +35,7 @@ function WordCardConteiner(props) {
             english={data[index].english}
             transcription={data[index].transcription}
             russian={data[index].russian}
+            ref={ref}
           />
           <div className="indexCard">{`${data[index].id} / ${data.length}`}</div>
         </div>
