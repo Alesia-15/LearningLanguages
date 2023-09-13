@@ -5,63 +5,69 @@
   h2 {
     padding: 30px 10px;
     text-align: center;
-    font-size: 24px;
+    font-size: 30px;
     color: $colorVeryDark;
   }
-  table.wordList {
-    width: 100%;
-    margin: 0 auto;
-    font-size: 18px;
-    color: $colorDark;
-    background-color: $colorLight;
-    thead {
+  #head {
+    p {
       font-size: 20px;
       font-weight: 700;
       text-align: center;
-      td {
-        border: double $colorDark;
-      }
+      border: double $colorDark;
     }
-    td {
-      padding: 5px;
+  }
+  .listContainer {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    grid-gap: 3px;
+    color: $colorDark;
+    background-color: $colorLight;
+    p:nth-child(1),
+    p:nth-child(4),
+    input:nth-child(1),
+    input:nth-child(4) {
+      width: 15%;
+    }
+    p:nth-child(2),
+    input:nth-child(2),
+    div,
+    p:nth-child(5) {
+      width: 20%;
+    }
+    p:nth-child(3),
+    input:nth-child(3) {
+      width: 30%;
+    }
+    p,
+    div,
+    input {
+      padding: 10px;
+      font-size: 22px;
       border: 1px solid;
+      box-sizing: border-box;
     }
-    tbody {
-      tr {
-        td:first-child {
-          font-weight: 500;
-        }
-        td:last-child {
-          text-align: center;
-        }
-        button {
-          padding: 5px;
-          margin: 0px 7px;
-          border: none;
-          cursor: pointer;
-          background-color: $colorLight;
-        }
-        .btn img {
-          width: 30px;
-          height: 30px;
-        }
-        .selected {
-          border: double $colorVeryDark;
-          background-color: $colorVeryLight;
-        }
-        .selected button {
-          display: inline-block;
-          background-color: $colorVeryLight;
-        }
-        input {
-          padding: 10px 5px;
-          font-size: 18px;
-          outline: none;
-          border: none;
-          color: $colorDark;
-          background-color: $colorVeryLight;
+    p:first-child {
+      font-weight: 500;
+    }
+    div {
+      text-align: center;
+      button {
+        height: 38px;
+        padding: 5px;
+        margin: 0px 7px;
+        border: none;
+        cursor: pointer;
+        background-color: $colorLight;
+        img {
+          height: 100%;
         }
       }
+    }
+    input {
+      color: $colorDark;
+      background-color: $colorVeryLight;
     }
   }
 }

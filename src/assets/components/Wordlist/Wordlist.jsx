@@ -13,43 +13,35 @@ function Wordlist(props) {
   return (
     <>
       {passed ? (
-        <tr className="rowList selected">
-          <td>
-            <input type="text" defaultValue={props.english} />
-          </td>
-          <td>
-            <input type="text" defaultValue={props.transcription} />
-          </td>
-          <td>
-            <input type="text" defaultValue={props.russian} />
-          </td>
-          <td>
-            <input type="text" defaultValue={props.topic} />
-          </td>
-          <td className="btn">
+        <div className="listContainer">
+          <input type="text" defaultValue={props.english} />
+          <input type="text" defaultValue={props.transcription} />
+          <input type="text" defaultValue={props.russian} />
+          <input type="text" defaultValue={props.topic} />
+          <div className="btn">
             <button>
               <img src={save} alt="save" />
             </button>
             <button onClick={handleClick}>
               <img src={close} alt="close"></img>
             </button>
-          </td>
-        </tr>
+          </div>
+        </div>
       ) : (
-        <tr className="rowList">
-          <td>{props.english}</td>
-          <td>{props.transcription}</td>
-          <td>{props.russian}</td>
-          <td>{props.topic}</td>
-          <td className="btn">
+        <div className="listContainer">
+          <p>{props.english}</p>
+          <p>{props.transcription}</p>
+          <p>{props.russian}</p>
+          <p>{props.topic}</p>
+          <div>
             <button onClick={handleClick}>
               <img src={pen} alt="pen"></img>
             </button>
             <button>
               <img src={del} alt="del"></img>
             </button>
-          </td>
-        </tr>
+          </div>
+        </div>
       )}
     </>
   );

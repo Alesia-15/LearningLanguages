@@ -22,7 +22,7 @@ function WordCardConteiner() {
 
   // Фокус кнопки "Проверить"
   const ref = useRef();
-  useEffect(() => ref.current.focus(), []);
+  useEffect(() => ref.current.focus(), [index]);
 
   // Выучено слов
   let [count, setCount] = useState(0);

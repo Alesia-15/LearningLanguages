@@ -6,29 +6,23 @@ function WordListConteiner() {
   return (
     <div className="wordListContainer">
       <h2 id="list">Список слов</h2>
-      <table className="wordList">
-        <thead>
-          <tr>
-            <td>Слово</td>
-            <td>Транскрипция</td>
-            <td>Перевод</td>
-            <td>Тема</td>
-            <td>Редактирование</td>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((words) => (
-            <WordList
-              key={words.id}
-              english={words.english}
-              transcription={words.transcription}
-              russian={words.russian}
-              topic={words.topic}
-              isSelected={words.isSelected}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div id="head" className="listContainer">
+        <p>Слово</p>
+        <p>Транскрипция</p>
+        <p>Перевод</p>
+        <p>Тема</p>
+        <p>Редактирование</p>
+      </div>
+      {data.map((words) => (
+        <WordList
+          key={words.id}
+          english={words.english}
+          transcription={words.transcription}
+          russian={words.russian}
+          topic={words.topic}
+          isSelected={words.isSelected}
+        />
+      ))}
     </div>
   );
 }
