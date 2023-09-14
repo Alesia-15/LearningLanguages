@@ -3,7 +3,7 @@
 .wordListContainer {
   margin: 20px;
   h2 {
-    padding: 30px 10px;
+    padding: 25px 10px;
     text-align: center;
     font-size: 30px;
     color: $colorVeryDark;
@@ -68,6 +68,10 @@
     input {
       color: $colorDark;
       background-color: $colorVeryLight;
+      outline: none;
+      &.empty {
+        border: 1px solid #ff0000;
+      }
     }
   }
 }
