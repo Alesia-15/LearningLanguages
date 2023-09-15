@@ -20,7 +20,6 @@ function WordListConteiner() {
           transcription={words.transcription}
           russian={words.russian}
           topic={words.topic}
-          isSelected={words.isSelected}
         />
       ))}
     </div>

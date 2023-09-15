@@ -12,13 +12,33 @@ function Wordlist(props) {
     setPressed(!pressed);
   };
 
-  // input с проверкой на пустоту
+  // состояние инпута
+  let [text, setText] = useState();
+  const handleChange = (e) => {
+    setText((text = e.target.value));
+  };
+
+  // объект слов
+  let [objWords, setArrWords] = useState(props);
+  const handleClickSave = (e) => {
+    e.preventDefault();
+    if (text === "") {
+      alert("Не заполнены все поля!");
+    } else {
+      setArrWords(objWords);
+      console.log(objWords);
+      setPressed(!pressed);
+    }
+  };
+
+  // создание инпут
   function getInput(el) {
     return (
       <input
         type="text"
         defaultValue={el}
-        className={`${el === "" ? "empty" : ""}`}
+        className={`${text === "" ? "empty" : ""}`}
+        onChange={handleChange}
       />
     );
   }
@@ -32,7 +52,7 @@ function Wordlist(props) {
           {getInput(props.russian)}
           {getInput(props.topic)}
           <div className="btn">
-            <button>
+            <button onClick={handleClickSave}>
               <img src={save} alt="save" />
             </button>
             <button onClick={handleClickOpenClose}>
