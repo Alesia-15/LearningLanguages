@@ -63,6 +63,10 @@
         img {
           height: 100%;
         }
+        &:disabled {
+          opacity: 0.5;
+          cursor: auto;
+        }
       }
     }
     input {

@@ -12,47 +12,77 @@ function Wordlist(props) {
     setPressed(!pressed);
   };
 
-  // состояние инпута
-  let [text, setText] = useState();
-  const handleChange = (e) => {
-    setText((text = e.target.value));
+  // состояние инпутов
+  let [english, setEnglish] = useState(props.english);
+  const handleChangeEnglish = (e) => {
+    setEnglish((english = e.target.value));
+  };
+  let [transcription, setTranscription] = useState(props.transcription);
+  const handleChangeTranscription = (e) => {
+    setTranscription((transcription = e.target.value));
+  };
+  let [russian, setRussian] = useState(props.russian);
+  const handleChangeRussian = (e) => {
+    setRussian((russian = e.target.value));
+  };
+  let [topic, setTopic] = useState(props.topic);
+  const handleChangeTopic = (e) => {
+    setTopic((topic = e.target.value));
   };
 
-  // объект слов
-  let [objWords, setArrWords] = useState(props);
+  // кнопка сохранить
+  let [objWords, setObjWords] = useState([]);
+  let [disabledSave, setDisabledSave] = useState(false);
   const handleClickSave = (e) => {
     e.preventDefault();
-    if (text === "") {
-      alert("Не заполнены все поля!");
+    if (
+      english === "" ||
+      transcription === "" ||
+      russian === "" ||
+      topic === ""
+    ) {
+      setDisabledSave((disabledSave = true));
     } else {
-      setArrWords(objWords);
+      setObjWords((objWords = [english, transcription, russian, topic]));
       console.log(objWords);
       setPressed(!pressed);
     }
   };
 
-  // создание инпут
-  function getInput(el) {
-    return (
-      <input
-        type="text"
-        defaultValue={el}
-        className={`${text === "" ? "empty" : ""}`}
-        onChange={handleChange}
-      />
-    );
-  }
-
   return (
     <>
       {pressed ? (
         <div className="listContainer">
-          {getInput(props.english)}
-          {getInput(props.transcription)}
-          {getInput(props.russian)}
-          {getInput(props.topic)}
+          <input
+            type="text"
+            defaultValue={props.english}
+            name="english"
+            onChange={handleChangeEnglish}
+            className={`${english === "" ? "empty" : ""}`}
+          />
+          <input
+            type="text"
+            defaultValue={props.transcription}
+            name="transcription"
+            onChange={handleChangeTranscription}
+            className={`${transcription === "" ? "empty" : ""}`}
+          />
+          <input
+            type="text"
+            defaultValue={props.russian}
+            name="russian"
+            onChange={handleChangeRussian}
+            className={`${russian === "" ? "empty" : ""}`}
+          />
+          <input
+            type="text"
+            defaultValue={props.topic}
+            name="topic"
+            onChange={handleChangeTopic}
+            className={`${topic === "" ? "empty" : ""}`}
+          />
           <div className="btn">
-            <button onClick={handleClickSave}>
+            <button onClick={handleClickSave} disabled={disabledSave}>
               <img src={save} alt="save" />
             </button>
             <button onClick={handleClickOpenClose}>
