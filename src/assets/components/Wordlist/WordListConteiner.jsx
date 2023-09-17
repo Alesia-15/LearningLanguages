@@ -5,6 +5,7 @@ import save from "../../images/save.svg";
 import close from "../../images/close.svg";
 
 function WordListConteiner() {
+  // кнопка newWord
   const [createNewWord, setCreateNewWord] = useState(true);
   const handleClickNewWord = () => {
     setCreateNewWord(!createNewWord);
@@ -40,9 +41,20 @@ function WordListConteiner() {
     ) {
       alert("Заполнены не все поля!");
     } else {
-      setObjWords((objWords = [english, transcription, russian, topic]));
+      setObjWords(
+        (objWords = {
+          english: english,
+          transcription: transcription,
+          russian: russian,
+          topic: topic,
+        })
+      );
       console.log(objWords);
       setCreateNewWord(!createNewWord);
+      setEnglish("");
+      setTranscription("");
+      setRussian("");
+      setTopic("");
     }
   };
 
