@@ -40,6 +40,17 @@ function WordListConteiner() {
       topic === ""
     ) {
       alert("Заполнены не все поля!");
+    } else if (english.match(/^[A-Za-z]+$/gi) === null) {
+      alert("English word должно содержать только английские буквы!");
+    } else if (
+      transcription.match(/^\[.+\]$/gi) === null ||
+      transcription.match(/[А-Яа-я]/gi) !== null
+    ) {
+      alert(
+        `Транскрипция должна начинаться с "[", заканчиваться "]" и не содержать русские буквы!`
+      );
+    } else if (russian.match(/^[А-Яа-я]+$/gi) === null) {
+      alert("Russian word должно содержать только русские буквы!");
     } else {
       setObjWords(
         (objWords = {
@@ -94,6 +105,7 @@ function WordListConteiner() {
               type="text"
               value={english}
               name="english"
+              placeholder="english word"
               onChange={handleChangeEnglish}
               className={`${english === "" ? "empty" : ""}`}
             />
@@ -101,6 +113,7 @@ function WordListConteiner() {
               type="text"
               value={transcription}
               name="transcription"
+              placeholder="[transcription]"
               onChange={handleChangeTranscription}
               className={`${transcription === "" ? "empty" : ""}`}
             />
@@ -108,6 +121,7 @@ function WordListConteiner() {
               type="text"
               value={russian}
               name="russian"
+              placeholder="russian word"
               onChange={handleChangeRussian}
               className={`${russian === "" ? "empty" : ""}`}
             />
@@ -115,6 +129,7 @@ function WordListConteiner() {
               type="text"
               value={topic}
               name="topic"
+              placeholder="topic"
               onChange={handleChangeTopic}
               className={`${topic === "" ? "empty" : ""}`}
             />
