@@ -16,18 +16,22 @@ function Wordlist(props) {
   let [english, setEnglish] = useState(props.english);
   const handleChangeEnglish = (e) => {
     setEnglish((english = e.target.value));
+    handleChangeSave();
   };
   let [transcription, setTranscription] = useState(props.transcription);
   const handleChangeTranscription = (e) => {
     setTranscription((transcription = e.target.value));
+    handleChangeSave();
   };
   let [russian, setRussian] = useState(props.russian);
   const handleChangeRussian = (e) => {
     setRussian((russian = e.target.value));
+    handleChangeSave();
   };
   let [topic, setTopic] = useState(props.topic);
   const handleChangeTopic = (e) => {
     setTopic((topic = e.target.value));
+    handleChangeSave();
   };
 
   // проверка инпутов на пустоту
@@ -47,15 +51,32 @@ function Wordlist(props) {
   // кнопка сохранить
   let [objWords, setObjWords] = useState([]);
   let [disabledSave, setDisabledSave] = useState(emptyInput);
-  let handleClickSave = (e) => {
-    e.preventDefault();
-    if (emptyInput === true) {
+
+  function handleChangeSave() {
+    if (
+      english === "" ||
+      transcription === "" ||
+      russian === "" ||
+      topic === ""
+    ) {
       setDisabledSave((disabledSave = true));
     } else {
-      setObjWords((objWords = [english, transcription, russian, topic]));
-      console.log(objWords);
-      setPressed(!pressed);
+      setDisabledSave((disabledSave = false));
     }
+  }
+
+  let handleClickSave = (e) => {
+    e.preventDefault();
+    setObjWords(
+      (objWords = {
+        english: english,
+        transcription: transcription,
+        russian: russian,
+        topic: topic,
+      })
+    );
+    console.log(objWords);
+    setPressed(!pressed);
   };
 
   return (
