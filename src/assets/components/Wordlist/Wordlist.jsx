@@ -30,17 +30,26 @@ function Wordlist(props) {
     setTopic((topic = e.target.value));
   };
 
-  // кнопка сохранить
-  let [objWords, setObjWords] = useState([]);
-  let [disabledSave, setDisabledSave] = useState(false);
-  const handleClickSave = (e) => {
-    e.preventDefault();
+  // проверка инпутов на пустоту
+  const emptyInput = () => {
     if (
       english === "" ||
       transcription === "" ||
       russian === "" ||
       topic === ""
     ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  // кнопка сохранить
+  let [objWords, setObjWords] = useState([]);
+  let [disabledSave, setDisabledSave] = useState(emptyInput);
+  let handleClickSave = (e) => {
+    e.preventDefault();
+    if (emptyInput === true) {
       setDisabledSave((disabledSave = true));
     } else {
       setObjWords((objWords = [english, transcription, russian, topic]));
