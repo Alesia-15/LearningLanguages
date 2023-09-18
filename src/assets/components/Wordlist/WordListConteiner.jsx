@@ -29,6 +29,9 @@ function WordListConteiner() {
     setTopic((topic = e.target.value));
   };
 
+  // состояние валидации
+  let [validation, setValidation] = useState("");
+
   // кнопка сохранить
   let [objWords, setObjWords] = useState([]);
   const handleClickSave = (e) => {
@@ -39,18 +42,23 @@ function WordListConteiner() {
       russian === "" ||
       topic === ""
     ) {
-      alert("Заполнены не все поля!");
+      setValidation((validation = "Заполнены не все поля!"));
     } else if (english.match(/^[A-Za-z]+$/gi) === null) {
-      alert("English word должно содержать только английские буквы!");
+      setValidation(
+        (validation =
+          "Английское слово должно содержать только английские буквы!")
+      );
     } else if (
       transcription.match(/^\[.+\]$/gi) === null ||
       transcription.match(/[А-Яа-я]/gi) !== null
     ) {
-      alert(
-        `Транскрипция должна начинаться с "[", заканчиваться "]" и не содержать русские буквы!`
+      setValidation(
+        (validation = `Транскрипция должна начинаться с "[", заканчиваться "]" и не содержать русские буквы!`)
       );
     } else if (russian.match(/^[А-Яа-я]+$/gi) === null) {
-      alert("Russian word должно содержать только русские буквы!");
+      setValidation(
+        (validation = "Перевод должен содержать только русские буквы!")
+      );
     } else {
       setObjWords(
         (objWords = {
@@ -66,6 +74,7 @@ function WordListConteiner() {
       setTranscription("");
       setRussian("");
       setTopic("");
+      setValidation("");
     }
   };
 
@@ -73,6 +82,7 @@ function WordListConteiner() {
   const handleClickOpenClose = (e) => {
     e.preventDefault();
     setCreateNewWord(!createNewWord);
+    setValidation("");
   };
 
   return (
@@ -95,7 +105,7 @@ function WordListConteiner() {
             topic={words.topic}
           />
         ))}
-        <div>
+        <div className="newWordContainer">
           {createNewWord ? (
             <button className="newWord" onClick={handleClickNewWord}>
               Добавить новое слово
@@ -144,6 +154,7 @@ function WordListConteiner() {
               </div>
             </div>
           )}
+          <p>{validation}</p>
         </div>
       </div>
     </div>

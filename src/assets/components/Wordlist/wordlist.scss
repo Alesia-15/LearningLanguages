@@ -27,7 +27,6 @@
       justify-content: space-between;
       align-items: stretch;
       grid-gap: 5px;
-
       p:nth-child(1),
       p:nth-child(5),
       input:nth-child(1),
@@ -86,16 +85,24 @@
         }
       }
     }
-    .newWord {
-      display: block;
-      padding: 10px 20px;
-      margin: 15px auto;
-      font-size: 20px;
-      color: $colorWhite;
-      background-color: $colorRed;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
+    .newWordContainer {
+      .newWord {
+        display: block;
+        padding: 10px 20px;
+        margin: 15px auto;
+        font-size: 20px;
+        color: $colorWhite;
+        background-color: $colorRed;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+      }
+      p {
+        padding: 5px;
+        text-align: center;
+        font-size: 20px;
+        color: $colorRed;
+      }
     }
   }
 }
