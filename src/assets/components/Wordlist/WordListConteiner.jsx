@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import data from "../../data.json";
 import WordList from "./WordList";
-import save from "../../images/save.svg";
-import close from "../../images/close.svg";
+import save from "../../images/save.png";
+import close from "../../images/close.png";
 
 function WordListConteiner() {
   // кнопка newWord
@@ -78,71 +78,73 @@ function WordListConteiner() {
   return (
     <div className="wordListContainer">
       <h2 id="list">Список слов</h2>
-      <div id="head" className="listContainer">
-        <p>Слово</p>
-        <p>Транскрипция</p>
-        <p>Перевод</p>
-        <p>Тема</p>
-        <p>Редактирование</p>
-      </div>
-      {data.map((words) => (
-        <WordList
-          key={words.id}
-          english={words.english}
-          transcription={words.transcription}
-          russian={words.russian}
-          topic={words.topic}
-        />
-      ))}
-      <div>
-        {createNewWord ? (
-          <button className="newWord" onClick={handleClickNewWord}>
-            Добавить новое слово
-          </button>
-        ) : (
-          <div className="listContainer">
-            <input
-              type="text"
-              value={english}
-              name="english"
-              placeholder="english word"
-              onChange={handleChangeEnglish}
-              className={`${english === "" ? "empty" : ""}`}
-            />
-            <input
-              type="text"
-              value={transcription}
-              name="transcription"
-              placeholder="[transcription]"
-              onChange={handleChangeTranscription}
-              className={`${transcription === "" ? "empty" : ""}`}
-            />
-            <input
-              type="text"
-              value={russian}
-              name="russian"
-              placeholder="russian word"
-              onChange={handleChangeRussian}
-              className={`${russian === "" ? "empty" : ""}`}
-            />
-            <input
-              type="text"
-              value={topic}
-              name="topic"
-              placeholder="topic"
-              onChange={handleChangeTopic}
-              className={`${topic === "" ? "empty" : ""}`}
-            />
-            <div className="btn">
-              <button onClick={handleClickSave}>
-                <img src={save} alt="save" />
-              </button>
-              <button onClick={handleClickOpenClose}>
-                <img src={close} alt="close"></img>
-              </button>
+      <div className="listContainer">
+        <div id="head" className="row">
+          <p>Слово</p>
+          <p>Транскрипция</p>
+          <p>Перевод</p>
+          <p>Тема</p>
+          <p></p>
+        </div>
+        {data.map((words) => (
+          <WordList
+            key={words.id}
+            english={words.english}
+            transcription={words.transcription}
+            russian={words.russian}
+            topic={words.topic}
+          />
+        ))}
+        <div>
+          {createNewWord ? (
+            <button className="newWord" onClick={handleClickNewWord}>
+              Добавить новое слово
+            </button>
+          ) : (
+            <div className="row">
+              <input
+                type="text"
+                value={english}
+                name="english"
+                placeholder="Слово"
+                onChange={handleChangeEnglish}
+                className={`${english === "" ? "empty" : ""}`}
+              />
+              <input
+                type="text"
+                value={transcription}
+                name="transcription"
+                placeholder="[Транскрипция]"
+                onChange={handleChangeTranscription}
+                className={`${transcription === "" ? "empty" : ""}`}
+              />
+              <input
+                type="text"
+                value={russian}
+                name="russian"
+                placeholder="Перевод"
+                onChange={handleChangeRussian}
+                className={`${russian === "" ? "empty" : ""}`}
+              />
+              <input
+                type="text"
+                value={topic}
+                name="topic"
+                placeholder="Тема"
+                onChange={handleChangeTopic}
+                className={`${topic === "" ? "empty" : ""}`}
+              />
+              <div className="btn">
+                <button onClick={handleClickSave}>
+                  <img src={save} alt="save" />
+                </button>
+                <button onClick={handleClickOpenClose}>
+                  <img src={close} alt="close"></img>
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

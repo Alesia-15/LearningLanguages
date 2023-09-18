@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./wordlist.scss";
-import save from "../../images/save.svg";
-import pen from "../../images/pen.svg";
+import save from "../../images/save.png";
+import pen from "../../images/pen.png";
 import del from "../../images/delete.svg";
-import close from "../../images/close.svg";
+import close from "../../images/close.png";
 
 function Wordlist(props) {
   // открытие / закрытие режима редактирования
@@ -82,7 +82,7 @@ function Wordlist(props) {
   return (
     <>
       {pressed ? (
-        <div className="listContainer">
+        <div className="row">
           <input
             type="text"
             defaultValue={props.english}
@@ -121,7 +121,7 @@ function Wordlist(props) {
           </div>
         </div>
       ) : (
-        <div className="listContainer">
+        <div className="row">
           <p>{props.english}</p>
           <p>{props.transcription}</p>
           <p>{props.russian}</p>

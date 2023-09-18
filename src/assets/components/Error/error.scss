@@ -1,19 +1,20 @@
 @import "./src/assets/style/variables.scss";
 
 .error {
+  padding: 50px 20px;
   h1 {
     text-align: center;
     font-size: 40px;
-    color: $colorDark;
+    color: $colorRed;
   }
   h2 {
     text-align: center;
     font-size: 150px;
-    color: $colorVeryDark;
+    color: $colorDarkRed;
   }
   p {
     text-align: center;
     font-size: 30px;
-    color: $colorDark;
+    color: $colorRed;
   }
 }

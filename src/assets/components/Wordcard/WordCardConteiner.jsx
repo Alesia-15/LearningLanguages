@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import data from "../../data.json";
 import WordCard from "./WordCard";
+import arrowLeft from "../../images/arrowLeft.png";
+import arrowRight from "../../images/arrowRight.png";
 
 function WordCardConteiner() {
   // Переключение карточек
@@ -34,21 +36,23 @@ function WordCardConteiner() {
   return (
     <div className="wordsCards">
       <h2 id="cards">Карточки слов</h2>
-      <div className="wordCardContainer">
-        <button onClick={backClick}>&#8656;</button>
-        <div>
-          <WordCard
-            key={data[index].id}
-            english={data[index].english}
-            transcription={data[index].transcription}
-            russian={data[index].russian}
-            ref={ref}
-            countWords={countWords}
-          />
-          <div className="indexCard">{`${data[index].id} / ${data.length}`}</div>
-          <div className="learnedWords">{`Выучено слов: ${count}`}</div>
+      <div>
+        <div className="wordCardContainer">
+          <img src={arrowLeft} alt="left" onClick={backClick} />
+          <div>
+            <WordCard
+              key={data[index].id}
+              english={data[index].english}
+              transcription={data[index].transcription}
+              russian={data[index].russian}
+              ref={ref}
+              countWords={countWords}
+            />
+          </div>
+          <img src={arrowRight} alt="right" onClick={forwardClick} />
         </div>
-        <button onClick={forwardClick}>&#8658;</button>
+        <div className="indexCard">{`${data[index].id} / ${data.length}`}</div>
+        <div className="learnedWords">{`Выучено слов: ${count}`}</div>
       </div>
     </div>
   );

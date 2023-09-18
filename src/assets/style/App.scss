@@ -5,11 +5,14 @@
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
+  background-color: $colorLight;
 }
 header,
 main,
 footer {
   width: 100%;
+  font-family: Inter;
+  background-color: $colorLight;
 }
 h1,
 h2,
@@ -23,42 +26,37 @@ p {
   margin: 0 auto;
   padding: 20px;
 }
-header,
-footer {
-  padding: 20px;
-  background: url(../images/background.jpg);
-  background-position: center;
-  background-size: cover;
-}
 header {
   position: fixed;
-}
-main {
-  margin-top: 250px;
-}
-header {
-  h1 {
-    padding: 20px 10px;
-    text-align: center;
-    color: $colorVeryDark;
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid $colorDarkRed;
+  border-radius: 15px;
+  ul {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    li {
+      padding: 5px 10px;
+      margin: auto;
+      display: inline;
+      font-size: 18px;
+      font-weight: 400;
+      text-decoration-line: underline;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: $colorRed;
+    }
   }
 }
-li {
-  display: inline;
-  padding: 5px 10px;
-  margin: 5px;
-  font-size: 28px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: $colorVeryDark;
-  border: 1px solid;
-  border-radius: 15px;
-  box-shadow: 7px 7px 15px 0 $colorVeryDark;
-  cursor: pointer;
+main {
+  margin-top: 100px;
 }
-ul {
-  display: flex;
-  justify-content: space-around;
+footer {
+  color: $colorDarkRed;
+  border-top: 1px solid;
+  border-radius: 15px;
 }
 a:link,
 a:visited {
