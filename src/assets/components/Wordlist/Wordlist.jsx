@@ -13,34 +13,32 @@ function Wordlist(props) {
   };
 
   // состояние инпутов
-  let [english, setEnglish] = useState(props.english);
-  const handleChangeEnglish = (e) => {
-    setEnglish((english = e.target.value));
-    handleChangeSave();
-  };
-  let [transcription, setTranscription] = useState(props.transcription);
-  const handleChangeTranscription = (e) => {
-    setTranscription((transcription = e.target.value));
-    handleChangeSave();
-  };
-  let [russian, setRussian] = useState(props.russian);
-  const handleChangeRussian = (e) => {
-    setRussian((russian = e.target.value));
-    handleChangeSave();
-  };
-  let [topic, setTopic] = useState(props.topic);
-  const handleChangeTopic = (e) => {
-    setTopic((topic = e.target.value));
+  // Создаем объект состояния для хранения значений полей ввода
+  const [formValues, setFormValues] = useState({
+    english: props.english,
+    transcription: props.transcription,
+    russian: props.russian,
+    topic: props.topic,
+  });
+
+  // Обработчик изменения для всех полей ввода
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    // Обновляем состояние с учетом изменений
+    setFormValues((prevValues) => ({
+      ...prevValues, // копируем предыдущее состояние
+      [name]: value, // обновляем значение для конкретного поля ввода
+    }));
     handleChangeSave();
   };
 
   // проверка инпутов на пустоту
   const emptyInput = () => {
     if (
-      english === "" ||
-      transcription === "" ||
-      russian === "" ||
-      topic === ""
+      formValues.english === "" ||
+      formValues.transcription === "" ||
+      formValues.russian === "" ||
+      formValues.topic === ""
     ) {
       return true;
     } else {
@@ -54,10 +52,10 @@ function Wordlist(props) {
 
   function handleChangeSave() {
     if (
-      english === "" ||
-      transcription === "" ||
-      russian === "" ||
-      topic === ""
+      formValues.english === "" ||
+      formValues.transcription === "" ||
+      formValues.russian === "" ||
+      formValues.topic === ""
     ) {
       setDisabledSave((disabledSave = true));
     } else {
@@ -69,10 +67,10 @@ function Wordlist(props) {
     e.preventDefault();
     setObjWords(
       (objWords = {
-        english: english,
-        transcription: transcription,
-        russian: russian,
-        topic: topic,
+        english: formValues.english,
+        transcription: formValues.transcription,
+        russian: formValues.russian,
+        topic: formValues.topic,
       })
     );
     console.log(objWords);
@@ -87,29 +85,29 @@ function Wordlist(props) {
             type="text"
             defaultValue={props.english}
             name="english"
-            onChange={handleChangeEnglish}
-            className={`${english === "" ? "empty" : ""}`}
+            onChange={handleInputChange}
+            className={`${formValues.english === "" ? "empty" : ""}`}
           />
           <input
             type="text"
             defaultValue={props.transcription}
             name="transcription"
-            onChange={handleChangeTranscription}
-            className={`${transcription === "" ? "empty" : ""}`}
+            onChange={handleInputChange}
+            className={`${formValues.transcription === "" ? "empty" : ""}`}
           />
           <input
             type="text"
             defaultValue={props.russian}
             name="russian"
-            onChange={handleChangeRussian}
-            className={`${russian === "" ? "empty" : ""}`}
+            onChange={handleInputChange}
+            className={`${formValues.russian === "" ? "empty" : ""}`}
           />
           <input
             type="text"
             defaultValue={props.topic}
             name="topic"
-            onChange={handleChangeTopic}
-            className={`${topic === "" ? "empty" : ""}`}
+            onChange={handleInputChange}
+            className={`${formValues.topic === "" ? "empty" : ""}`}
           />
           <div className="btn">
             <button onClick={handleClickSave} disabled={disabledSave}>
