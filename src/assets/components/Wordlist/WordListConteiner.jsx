@@ -12,21 +12,20 @@ function WordListConteiner() {
   };
 
   // состояние инпутов
-  let [english, setEnglish] = useState("");
-  const handleChangeEnglish = (e) => {
-    setEnglish((english = e.target.value));
-  };
-  let [transcription, setTranscription] = useState("");
-  const handleChangeTranscription = (e) => {
-    setTranscription((transcription = e.target.value));
-  };
-  let [russian, setRussian] = useState("");
-  const handleChangeRussian = (e) => {
-    setRussian((russian = e.target.value));
-  };
-  let [topic, setTopic] = useState("");
-  const handleChangeTopic = (e) => {
-    setTopic((topic = e.target.value));
+  const [formValues, setFormValues] = useState({
+    english: "",
+    transcription: "",
+    russian: "",
+    topic: "",
+  });
+
+  // Обработчик изменения для всех полей ввода
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((prevValues) => ({
+      ...prevValues, // копируем предыдущее состояние
+      [name]: value, // обновляем значение для конкретного поля ввода
+    }));
   };
 
   // состояние валидации
@@ -37,43 +36,40 @@ function WordListConteiner() {
   const handleClickSave = (e) => {
     e.preventDefault();
     if (
-      english === "" ||
-      transcription === "" ||
-      russian === "" ||
-      topic === ""
+      formValues.english === "" ||
+      formValues.transcription === "" ||
+      formValues.russian === "" ||
+      formValues.topic === ""
     ) {
       setValidation((validation = "Заполнены не все поля!"));
-    } else if (english.match(/^[A-Za-z]+$/gi) === null) {
+    } else if (formValues.english.match(/^[A-Za-z]+$/gi) === null) {
       setValidation(
         (validation =
           "Английское слово должно содержать только английские буквы!")
       );
     } else if (
-      transcription.match(/^\[.+\]$/gi) === null ||
-      transcription.match(/[А-Яа-я]/gi) !== null
+      formValues.transcription.match(/^\[.+\]$/gi) === null ||
+      formValues.transcription.match(/[А-Яа-я]/gi) !== null
     ) {
       setValidation(
         (validation = `Транскрипция должна начинаться с "[", заканчиваться "]" и не содержать русские буквы!`)
       );
-    } else if (russian.match(/^[А-Яа-я]+$/gi) === null) {
+    } else if (formValues.russian.match(/^[А-Яа-я]+$/gi) === null) {
       setValidation(
         (validation = "Перевод должен содержать только русские буквы!")
       );
     } else {
       setObjWords(
         (objWords = {
-          english: english,
-          transcription: transcription,
-          russian: russian,
-          topic: topic,
+          english: formValues.english,
+          transcription: formValues.transcription,
+          russian: formValues.russian,
+          topic: formValues.topic,
         })
       );
       console.log(objWords);
       setCreateNewWord(!createNewWord);
-      setEnglish("");
-      setTranscription("");
-      setRussian("");
-      setTopic("");
+      setFormValues("");
       setValidation("");
     }
   };
@@ -114,35 +110,35 @@ function WordListConteiner() {
             <div className="row">
               <input
                 type="text"
-                value={english}
+                value={formValues.english}
                 name="english"
                 placeholder="Слово"
-                onChange={handleChangeEnglish}
-                className={`${english === "" ? "empty" : ""}`}
+                onChange={handleInputChange}
+                className={`${formValues.english === "" ? "empty" : ""}`}
               />
               <input
                 type="text"
-                value={transcription}
+                value={formValues.transcription}
                 name="transcription"
                 placeholder="[Транскрипция]"
-                onChange={handleChangeTranscription}
-                className={`${transcription === "" ? "empty" : ""}`}
+                onChange={handleInputChange}
+                className={`${formValues.transcription === "" ? "empty" : ""}`}
               />
               <input
                 type="text"
-                value={russian}
+                value={formValues.russian}
                 name="russian"
                 placeholder="Перевод"
-                onChange={handleChangeRussian}
-                className={`${russian === "" ? "empty" : ""}`}
+                onChange={handleInputChange}
+                className={`${formValues.russian === "" ? "empty" : ""}`}
               />
               <input
                 type="text"
-                value={topic}
+                value={formValues.topic}
                 name="topic"
                 placeholder="Тема"
-                onChange={handleChangeTopic}
-                className={`${topic === "" ? "empty" : ""}`}
+                onChange={handleInputChange}
+                className={`${formValues.topic === "" ? "empty" : ""}`}
               />
               <div className="btn">
                 <button onClick={handleClickSave}>
