@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./wordlist.scss";
 import save from "../../images/save.png";
 import pen from "../../images/pen.png";
 import del from "../../images/delete.svg";
 import close from "../../images/close.png";
+import { MyContext } from "../Context";
+import data from "../../data.json";
 
 function Wordlist(props) {
+  let { words, setWords } = useContext(MyContext);
+
   // открытие / закрытие режима редактирования
   const [pressed, setPressed] = useState(props.pressed || false);
-  const handleClickOpenClose = () => {
-    setPressed(!pressed);
-  };
 
   // состояние инпутов
   // Создаем объект состояния для хранения значений полей ввода
@@ -67,6 +68,7 @@ function Wordlist(props) {
     e.preventDefault();
     setObjWords(
       (objWords = {
+        id: props.length,
         english: formValues.english,
         transcription: formValues.transcription,
         russian: formValues.russian,
@@ -74,7 +76,20 @@ function Wordlist(props) {
       })
     );
     console.log(objWords);
+    console.log(props.length);
     setPressed(!pressed);
+  };
+
+  console.log(disabledSave);
+
+  // Удаление
+  let handleClickDelete = () => {
+    let filteredArray = words.filter(
+      (value) => value.english !== props.english
+    );
+    words = filteredArray;
+    console.log(filteredArray);
+    console.log(words);
   };
 
   return (
@@ -86,34 +101,55 @@ function Wordlist(props) {
             defaultValue={props.english}
             name="english"
             onChange={handleInputChange}
-            className={`${formValues.english === "" ? "empty" : ""}`}
+            className={`${
+              formValues.english === "" || formValues.english === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <input
             type="text"
             defaultValue={props.transcription}
             name="transcription"
             onChange={handleInputChange}
-            className={`${formValues.transcription === "" ? "empty" : ""}`}
+            className={`${
+              formValues.transcription === "" ||
+              formValues.transcription === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <input
             type="text"
             defaultValue={props.russian}
             name="russian"
             onChange={handleInputChange}
-            className={`${formValues.russian === "" ? "empty" : ""}`}
+            className={`${
+              formValues.russian === "" || formValues.russian === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <input
             type="text"
             defaultValue={props.topic}
             name="topic"
             onChange={handleInputChange}
-            className={`${formValues.topic === "" ? "empty" : ""}`}
+            className={`${
+              formValues.topic === "" || formValues.topic === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <div className="btn">
             <button onClick={handleClickSave} disabled={disabledSave}>
               <img src={save} alt="save" />
             </button>
-            <button onClick={handleClickOpenClose}>
+            <button
+              onClick={() => {
+                setPressed(!pressed);
+              }}
+            >
               <img src={close} alt="close"></img>
             </button>
           </div>
@@ -125,10 +161,14 @@ function Wordlist(props) {
           <p>{props.russian}</p>
           <p>{props.topic}</p>
           <div>
-            <button onClick={handleClickOpenClose}>
+            <button
+              onClick={() => {
+                setPressed(!pressed);
+              }}
+            >
               <img src={pen} alt="pen"></img>
             </button>
-            <button>
+            <button onClick={handleClickDelete}>
               <img src={del} alt="del"></img>
             </button>
           </div>

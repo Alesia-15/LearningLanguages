@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import data from "../../data.json";
 import WordList from "./WordList";
 import save from "../../images/save.png";
 import close from "../../images/close.png";
+import { MyContext } from "../Context";
 
 function WordListConteiner() {
-  // кнопка newWord
+  const { words, setWords } = useContext(MyContext);
+
+  // кнопка Добавить новое слово
   const [createNewWord, setCreateNewWord] = useState(true);
   const handleClickNewWord = () => {
     setCreateNewWord(!createNewWord);
@@ -30,7 +33,6 @@ function WordListConteiner() {
 
   // состояние валидации
   let [validation, setValidation] = useState("");
-
   // кнопка сохранить
   let [objWords, setObjWords] = useState([]);
   const handleClickSave = (e) => {
@@ -61,15 +63,17 @@ function WordListConteiner() {
     } else {
       setObjWords(
         (objWords = {
+          id: words.length + 1,
           english: formValues.english,
           transcription: formValues.transcription,
           russian: formValues.russian,
           topic: formValues.topic,
         })
       );
+      words.push(objWords);
       console.log(objWords);
       setCreateNewWord(!createNewWord);
-      setFormValues("");
+      //setFormValues("");
       setValidation("");
     }
   };
@@ -92,13 +96,13 @@ function WordListConteiner() {
           <p>Тема</p>
           <p></p>
         </div>
-        {data.map((words) => (
+        {words.map((word) => (
           <WordList
-            key={words.id}
-            english={words.english}
-            transcription={words.transcription}
-            russian={words.russian}
-            topic={words.topic}
+            key={word.id}
+            english={word.english}
+            transcription={word.transcription}
+            russian={word.russian}
+            topic={word.topic}
           />
         ))}
         <div className="newWordContainer">
@@ -114,7 +118,11 @@ function WordListConteiner() {
                 name="english"
                 placeholder="Слово"
                 onChange={handleInputChange}
-                className={`${formValues.english === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.english === "" || formValues.english === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <input
                 type="text"
@@ -122,7 +130,12 @@ function WordListConteiner() {
                 name="transcription"
                 placeholder="[Транскрипция]"
                 onChange={handleInputChange}
-                className={`${formValues.transcription === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.transcription === "" ||
+                  formValues.transcription === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <input
                 type="text"
@@ -130,7 +143,11 @@ function WordListConteiner() {
                 name="russian"
                 placeholder="Перевод"
                 onChange={handleInputChange}
-                className={`${formValues.russian === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.russian === "" || formValues.russian === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <input
                 type="text"
@@ -138,7 +155,11 @@ function WordListConteiner() {
                 name="topic"
                 placeholder="Тема"
                 onChange={handleInputChange}
-                className={`${formValues.topic === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.topic === "" || formValues.topic === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <div className="btn">
                 <button onClick={handleClickSave}>

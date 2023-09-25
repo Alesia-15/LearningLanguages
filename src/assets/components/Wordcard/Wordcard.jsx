@@ -11,7 +11,7 @@ const Wordcard = forwardRef((props, ref) => {
   return (
     <div className="wordCard">
       <h3>{props.english}</h3>
-      <div className="transcr">{props.transcription}</div>
+      <div className="transcription">{props.transcription}</div>
       <div className="check">
         {passed ? (
           <div>{props.russian}</div>

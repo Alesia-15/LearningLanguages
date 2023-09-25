@@ -5,6 +5,7 @@ import logo from "./assets/images/logo.png";
 import WordListConteiner from "./assets/components/Wordlist/WordListConteiner";
 import WordCardConteiner from "./assets/components/Wordcard/WordCardConteiner";
 import Error from "./assets/components/Error/Error";
+import Loader from "./assets/components/Loader/Loader";
 
 function App() {
   return (

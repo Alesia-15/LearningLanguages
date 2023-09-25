@@ -1,15 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import data from "../../data.json";
 import WordCard from "./WordCard";
 import arrowLeft from "../../images/arrowLeft.png";
 import arrowRight from "../../images/arrowRight.png";
+import { MyContext } from "../Context";
 
 function WordCardConteiner() {
+  const { words, setWords } = useContext(MyContext);
+
   // Переключение карточек
-  let [index, setIndex] = useState(data.index || 0);
+  let [index, setIndex] = useState(0);
   const forwardClick = () => {
     index++;
-    if (index == data.length) {
+    if (index == words.length) {
       index = "0";
     }
     setIndex(index);
@@ -17,7 +20,7 @@ function WordCardConteiner() {
   const backClick = () => {
     index--;
     if (index == "-1") {
-      index = data.length - 1;
+      index = words.length - 1;
     }
     setIndex(index);
   };
@@ -41,17 +44,17 @@ function WordCardConteiner() {
           <img src={arrowLeft} alt="left" onClick={backClick} />
           <div>
             <WordCard
-              key={data[index].id}
-              english={data[index].english}
-              transcription={data[index].transcription}
-              russian={data[index].russian}
+              key={words[index].id}
+              english={words[index].english}
+              transcription={words[index].transcription}
+              russian={words[index].russian}
               ref={ref}
               countWords={countWords}
             />
           </div>
           <img src={arrowRight} alt="right" onClick={forwardClick} />
         </div>
-        <div className="indexCard">{`${data[index].id} / ${data.length}`}</div>
+        <div className="indexCard">{`${words[index].id} / ${words.length}`}</div>
         <div className="learnedWords">{`Выучено слов: ${count}`}</div>
       </div>
     </div>
