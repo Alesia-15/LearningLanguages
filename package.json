@@ -2,6 +2,16 @@
   "name": "project_react",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/search": {
+      "target": "https://www.google.com",
+      "changeOrigin": true
+    },
+    "/api": {
+      "target": "http://itgirlschool.justmakeit.ru",
+      "changeOrigin": true
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

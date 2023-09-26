@@ -6,7 +6,7 @@ import close from "../../images/close.png";
 import { MyContext } from "../Context";
 
 function WordListConteiner() {
-  const { words, setWords } = useContext(MyContext);
+  const { words, setWords, addWord } = useContext(MyContext);
 
   // кнопка Добавить новое слово
   const [createNewWord, setCreateNewWord] = useState(true);
@@ -34,7 +34,7 @@ function WordListConteiner() {
   // состояние валидации
   let [validation, setValidation] = useState("");
   // кнопка сохранить
-  let [objWords, setObjWords] = useState([]);
+  let [objWord, setObjWord] = useState([]);
   const handleClickSave = (e) => {
     e.preventDefault();
     if (
@@ -61,8 +61,8 @@ function WordListConteiner() {
         (validation = "Перевод должен содержать только русские буквы!")
       );
     } else {
-      setObjWords(
-        (objWords = {
+      setObjWord(
+        (objWord = {
           id: words.length + 1,
           english: formValues.english,
           transcription: formValues.transcription,
@@ -70,8 +70,9 @@ function WordListConteiner() {
           tags: formValues.tags,
         })
       );
-      words.push(objWords);
-      console.log(objWords);
+      //words.push(objWord);
+      addWord(objWord);
+      console.log(objWord);
       setCreateNewWord(!createNewWord);
       //setFormValues("");
       setValidation("");
@@ -99,6 +100,7 @@ function WordListConteiner() {
         {words.map((word) => (
           <WordList
             key={word.id}
+            id={word.id}
             english={word.english}
             transcription={word.transcription}
             russian={word.russian}

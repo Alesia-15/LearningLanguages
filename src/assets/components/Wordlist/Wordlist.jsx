@@ -8,7 +8,8 @@ import { MyContext } from "../Context";
 import data from "../../data.json";
 
 function Wordlist(props) {
-  let { words, setWords } = useContext(MyContext);
+  let { words, setWords, index, setIndex, updateWord, deleteWord } =
+    useContext(MyContext);
 
   // открытие / закрытие режима редактирования
   const [pressed, setPressed] = useState(props.pressed || false);
@@ -16,6 +17,7 @@ function Wordlist(props) {
   // состояние инпутов
   // Создаем объект состояния для хранения значений полей ввода
   const [formValues, setFormValues] = useState({
+    id: props.id,
     english: props.english,
     transcription: props.transcription,
     russian: props.russian,
@@ -31,6 +33,7 @@ function Wordlist(props) {
       [name]: value, // обновляем значение для конкретного поля ввода
     }));
     handleChangeSave();
+    //setIndex(props.id);
   };
 
   // проверка инпутов на пустоту
@@ -48,9 +51,8 @@ function Wordlist(props) {
   };
 
   // кнопка сохранить
-  let [objWords, setObjWords] = useState([]);
+  let [objWord, setObjWord] = useState([]);
   let [disabledSave, setDisabledSave] = useState(emptyInput);
-
   function handleChangeSave() {
     if (
       formValues.english === "" ||
@@ -66,28 +68,38 @@ function Wordlist(props) {
 
   let handleClickSave = (e) => {
     e.preventDefault();
-    setObjWords(
-      (objWords = {
-        id: props.length,
+    setObjWord(
+      (objWord = {
+        id: props.id,
         english: formValues.english,
         transcription: formValues.transcription,
         russian: formValues.russian,
         tags: formValues.tags,
       })
     );
-    console.log(objWords);
-    console.log(props.length);
+    updateWord(objWord);
     setPressed(!pressed);
+    console.log(objWord);
   };
 
   // Удаление
   let handleClickDelete = () => {
-    let filteredArray = words.filter(
+    /* let filteredArray = words.filter(
       (value) => value.english !== props.english
     );
-    words = filteredArray;
-    console.log(filteredArray);
-    console.log(words);
+    words = filteredArray; */
+    setObjWord(
+      (objWord = {
+        id: props.id,
+        english: formValues.english,
+        transcription: formValues.transcription,
+        russian: formValues.russian,
+        tags: formValues.tags,
+      })
+    );
+    //setWords(words);
+    console.log(objWord);
+    deleteWord(objWord);
   };
 
   return (
