@@ -54,7 +54,7 @@ function WordCardConteiner() {
           </div>
           <img src={arrowRight} alt="right" onClick={forwardClick} />
         </div>
-        <div className="indexCard">{`${words[index].id} / ${words.length}`}</div>
+        <div className="indexCard">{`${index} / ${words.length}`}</div>
         <div className="learnedWords">{`Выучено слов: ${count}`}</div>
       </div>
     </div>

@@ -19,7 +19,7 @@ function Wordlist(props) {
     english: props.english,
     transcription: props.transcription,
     russian: props.russian,
-    topic: props.topic,
+    tags: props.tags,
   });
 
   // Обработчик изменения для всех полей ввода
@@ -39,7 +39,7 @@ function Wordlist(props) {
       formValues.english === "" ||
       formValues.transcription === "" ||
       formValues.russian === "" ||
-      formValues.topic === ""
+      formValues.tags === ""
     ) {
       return true;
     } else {
@@ -56,7 +56,7 @@ function Wordlist(props) {
       formValues.english === "" ||
       formValues.transcription === "" ||
       formValues.russian === "" ||
-      formValues.topic === ""
+      formValues.tags === ""
     ) {
       setDisabledSave((disabledSave = true));
     } else {
@@ -72,15 +72,13 @@ function Wordlist(props) {
         english: formValues.english,
         transcription: formValues.transcription,
         russian: formValues.russian,
-        topic: formValues.topic,
+        tags: formValues.tags,
       })
     );
     console.log(objWords);
     console.log(props.length);
     setPressed(!pressed);
   };
-
-  console.log(disabledSave);
 
   // Удаление
   let handleClickDelete = () => {
@@ -132,11 +130,11 @@ function Wordlist(props) {
           />
           <input
             type="text"
-            defaultValue={props.topic}
-            name="topic"
+            defaultValue={props.tags}
+            name="tags"
             onChange={handleInputChange}
             className={`${
-              formValues.topic === "" || formValues.topic === undefined
+              formValues.tags === "" || formValues.tags === undefined
                 ? "empty"
                 : ""
             }`}
@@ -159,7 +157,7 @@ function Wordlist(props) {
           <p>{props.english}</p>
           <p>{props.transcription}</p>
           <p>{props.russian}</p>
-          <p>{props.topic}</p>
+          <p>{props.tags}</p>
           <div>
             <button
               onClick={() => {

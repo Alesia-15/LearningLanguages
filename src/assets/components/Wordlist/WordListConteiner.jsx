@@ -19,7 +19,7 @@ function WordListConteiner() {
     english: "",
     transcription: "",
     russian: "",
-    topic: "",
+    tags: "",
   });
 
   // Обработчик изменения для всех полей ввода
@@ -41,7 +41,7 @@ function WordListConteiner() {
       formValues.english === "" ||
       formValues.transcription === "" ||
       formValues.russian === "" ||
-      formValues.topic === ""
+      formValues.tags === ""
     ) {
       setValidation((validation = "Заполнены не все поля!"));
     } else if (formValues.english.match(/^[A-Za-z]+$/gi) === null) {
@@ -67,7 +67,7 @@ function WordListConteiner() {
           english: formValues.english,
           transcription: formValues.transcription,
           russian: formValues.russian,
-          topic: formValues.topic,
+          tags: formValues.tags,
         })
       );
       words.push(objWords);
@@ -102,7 +102,7 @@ function WordListConteiner() {
             english={word.english}
             transcription={word.transcription}
             russian={word.russian}
-            topic={word.topic}
+            tags={word.tags}
           />
         ))}
         <div className="newWordContainer">
@@ -151,12 +151,12 @@ function WordListConteiner() {
               />
               <input
                 type="text"
-                value={formValues.topic}
-                name="topic"
+                value={formValues.tags}
+                name="tags"
                 placeholder="Тема"
                 onChange={handleInputChange}
                 className={`${
-                  formValues.topic === "" || formValues.topic === undefined
+                  formValues.tags === "" || formValues.tags === undefined
                     ? "empty"
                     : ""
                 }`}
