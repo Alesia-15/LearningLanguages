@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import data from "../../data.json";
-import WordCard from "./WordCard";
+import WordCard from "./Wordcard";
 import arrowLeft from "../../images/arrowLeft.png";
 import arrowRight from "../../images/arrowRight.png";
 
