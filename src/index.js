@@ -8,7 +8,7 @@ import WordsStore from "./assets/stores/WordsStore";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 const stores = {
-  wordStore: new WordsStore(),
+  WordsStore: new WordsStore(),
 };
 
 root.render(

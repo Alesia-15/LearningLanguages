@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 //import data from "../../data.json";
 import WordList from "./Wordlist";
+import Loader from "../Loader/Loader";
+import Error from "../Error/Error";
 import save from "../../images/save.png";
 import close from "../../images/close.png";
 import { observer, inject } from "mobx-react";
 
-const WordListConteiner = inject(["wordStore"])(
-  observer(({ wordStore }) => {
+const WordListConteiner = inject(["WordsStore"])(
+  observer(({ WordsStore }) => {
     useEffect(() => {
-      wordStore.getWords();
+      WordsStore.getWords();
     }, []);
-    const data = wordStore.words;
 
     // кнопка newWord
     const [createNewWord, setCreateNewWord] = useState(true);
@@ -68,13 +69,15 @@ const WordListConteiner = inject(["wordStore"])(
       } else {
         setObjWords(
           (objWords = {
+            id: Number(WordsStore.words[WordsStore.words.length - 1].id) + 1,
             english: formValues.english,
             transcription: formValues.transcription,
             russian: formValues.russian,
             tags: formValues.tags,
           })
         );
-        console.log(objWords);
+        WordsStore.addWord(objWords);
+        console.log(objWords); // консоль
         setCreateNewWord(!createNewWord);
         setFormValues("");
         setValidation("");
@@ -87,6 +90,24 @@ const WordListConteiner = inject(["wordStore"])(
       setCreateNewWord(!createNewWord);
       setValidation("");
     };
+
+    if (WordsStore.isLoading === true) {
+      return <Loader />;
+    }
+
+    if (
+      WordsStore.errorStatus !== 200 ||
+      WordsStore.words === null ||
+      WordsStore.error !== null
+    ) {
+      return (
+        <Error
+          error={WordsStore.error}
+          status={WordsStore.errorStatus}
+          errorStatusText={WordsStore.errorStatusText}
+        />
+      );
+    }
 
     return (
       <div className="wordListContainer">
@@ -154,10 +175,10 @@ const WordListConteiner = inject(["wordStore"])(
             <p>Тема</p>
             <p></p>
           </div>
-
-          {data.map((word) => (
+          {WordsStore.words.map((word) => (
             <WordList
               key={word.id}
+              id={word.id}
               english={word.english}
               transcription={word.transcription}
               russian={word.russian}
