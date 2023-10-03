@@ -1,0 +1,25 @@
+@import "./src/assets/style/variables.scss";
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 10px;
+  h1 {
+    padding: 50px 0;
+    font-size: 45px;
+    font-weight: 400;
+    color: $colorDarkRed;
+  }
+  button {
+    padding: 17px 45px;
+    font-family: Inter;
+    font-size: 18px;
+    color: $colorWhite;
+    background-color: $colorRed;
+    border: none;
+    border-radius: 30px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+  }
+}
