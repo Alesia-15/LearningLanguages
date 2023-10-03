@@ -5,7 +5,7 @@ function Error(props) {
   return (
     <div className="error">
       <h1>Whoops!</h1>
-      <p>Код ответа:</p>
+      <p>{props.text}</p>
       <h2>{props.status}</h2>
       <p>{props.errorStatusText}</p>
       <p>{props.error}</p>

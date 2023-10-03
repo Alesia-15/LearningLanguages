@@ -102,6 +102,7 @@ const WordListConteiner = inject(["WordsStore"])(
     ) {
       return (
         <Error
+          text={"Код ответа:"}
           error={WordsStore.error}
           status={WordsStore.errorStatus}
           errorStatusText={WordsStore.errorStatusText}
