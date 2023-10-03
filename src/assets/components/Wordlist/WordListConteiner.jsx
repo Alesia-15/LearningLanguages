@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
-import data from "../../data.json";
-import WordList from "./WordList";
+//import data from "../../data.json";
+import WordList from "./Wordlist";
 import save from "../../images/save.png";
 import close from "../../images/close.png";
 import { MyContext } from "../Context";
 
 function WordListConteiner() {
-  const { words, setWords, addWord } = useContext(MyContext);
+  const { words, addWord } = useContext(MyContext);
 
   // кнопка Добавить новое слово
   const [createNewWord, setCreateNewWord] = useState(true);
@@ -63,7 +63,7 @@ function WordListConteiner() {
     } else {
       setObjWord(
         (objWord = {
-          id: words.length + 1,
+          id: Number(words[words.length - 1].id) + 1,
           english: formValues.english,
           transcription: formValues.transcription,
           russian: formValues.russian,
@@ -78,6 +78,8 @@ function WordListConteiner() {
       setValidation("");
     }
   };
+
+  //console.log(Number(words[words.length - 1].id) + 1);
 
   //кнопка закрыть
   const handleClickOpenClose = (e) => {

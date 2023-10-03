@@ -5,11 +5,10 @@ import pen from "../../images/pen.png";
 import del from "../../images/delete.svg";
 import close from "../../images/close.png";
 import { MyContext } from "../Context";
-import data from "../../data.json";
+//import data from "../../data.json";
 
 function Wordlist(props) {
-  let { words, setWords, index, setIndex, updateWord, deleteWord } =
-    useContext(MyContext);
+  let { words, setWords, updateWord, deleteWord } = useContext(MyContext);
 
   // открытие / закрытие режима редактирования
   const [pressed, setPressed] = useState(props.pressed || false);
@@ -79,7 +78,7 @@ function Wordlist(props) {
     );
     updateWord(objWord);
     setPressed(!pressed);
-    console.log(objWord);
+    //console.log(words);
   };
 
   // Удаление
