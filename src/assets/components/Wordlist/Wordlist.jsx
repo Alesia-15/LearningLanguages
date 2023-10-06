@@ -7,7 +7,7 @@ import close from "../../images/close.png";
 import { observer, inject } from "mobx-react";
 
 const Wordlist = inject(["WordsStore"])(
-  observer((props, { WordsStore }) => {
+  observer(({ WordsStore, ...props }) => {
     // открытие / закрытие режима редактирования
     const [pressed, setPressed] = useState(props.pressed || false);
     const handleClickOpenClose = () => {
@@ -79,11 +79,14 @@ const Wordlist = inject(["WordsStore"])(
       WordsStore.updateWord(objWords);
       console.log(objWords);
       setPressed(!pressed);
+      WordsStore.getWords();
     };
 
     let handleClickDelete = (e) => {
       e.preventDefault();
-      WordsStore.deleteWord(props);
+      const wordToRemove = { id: props.id };
+      WordsStore.deleteWord(wordToRemove);
+      WordsStore.getWords();
       console.log(props);
     };
 

@@ -174,7 +174,7 @@ const WordListConteiner = inject(["WordsStore"])(
             <p>Транскрипция</p>
             <p>Перевод</p>
             <p>Тема</p>
-            <p></p>
+            <p> </p>
           </div>
           {WordsStore.words.map((word) => (
             <WordList

@@ -33,7 +33,7 @@ class WordsStore {
 
   @action addWord = (newWord) => {
     this.isLoading = true;
-    return fetch(`https://itgirlschool.justmakeit.ru/api/words/add`, {
+    return fetch(`/api/words/add`, {
       method: "POST",
       headers: {
         "Content-type": "application/json; charset=UTF-8",
