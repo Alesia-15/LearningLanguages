@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-import GET from "./GET";
+//import GET from "./GET";
 //import data from "../data.json";
 import Error from "./Error/Error";
 import Loader from "./Loader/Loader";
@@ -9,57 +9,83 @@ export const MyContext = createContext();
 
 function MyContextComponent({ children }) {
   let [words, setWords] = useState([]);
+  let [isLoading, setIsLoading] = useState(false);
   let [error, setError] = useState("");
-  let [index, setIndex] = useState(0);
+  let [errorStatus, setErrorStatus] = useState("");
+  let [errorStatusText, setErrorStatusText] = useState("");
 
-  async function addWord(newWord) {
+  async function getWords() {
+    setIsLoading(true);
     try {
       const response = await fetch(
-        `https://itgirlschool.justmakeit.ru/api/words/add`,
+        "https://itgirlschool.justmakeit.ru/api/words"
+      );
+      console.log(response.statusText);
+      setErrorStatus(response.status);
+      setErrorStatusText(response.statusText);
+      const data = await response.json();
+      setWords(data);
+      setIsLoading(false);
+      return data;
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+    }
+  }
+
+  useEffect(() => {
+    getWords();
+  }, []);
+
+  async function addWord(newWord) {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`/api/words/add`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(newWord),
+      });
+      getWords();
+      setErrorStatus(response.status);
+      setErrorStatusText(response.statusText);
+      const data = await response.json();
+      setIsLoading(false);
+      return data;
+    } catch (error) {
+      setIsLoading(false);
+      setError(error);
+    }
+  }
+
+  async function updateWord(editWord) {
+    setIsLoading(true);
+    try {
+      const response = await fetch(
+        `https://itgirlschool.justmakeit.ru/api/words/${editWord.id}/update`,
         {
           method: "POST",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
           },
-          body: JSON.stringify(newWord),
+          body: JSON.stringify(editWord),
         }
       );
+      getWords();
+      setErrorStatus(response.status);
+      setErrorStatusText(response.statusText);
       const data = await response.json();
+      setIsLoading(false);
       return data;
     } catch (error) {
-      console.error(error);
+      setIsLoading(false);
+      setError(error);
     }
   }
 
-  function updateWord(editWord) {
-    fetch(
-      `https://itgirlschool.justmakeit.ru/api/words/${editWord.id}/update`,
-      {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify(editWord),
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Something went wrong");
-        }
-      })
-      /* .then((response) => {
-        const indexEditWord = words.findIndex((el) => el.id === editWord.id);
-        words[indexEditWord] = response;
-        console.log(words);
-      }) */
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   async function deleteWord(removeWord) {
+    setIsLoading(true);
     try {
       const response = await fetch(
         `https://itgirlschool.justmakeit.ru/api/words/${removeWord.id}/delete`,
@@ -71,36 +97,39 @@ function MyContextComponent({ children }) {
           body: JSON.stringify(removeWord),
         }
       );
-      return response.json();
+      getWords();
+      setErrorStatus(response.status);
+      setErrorStatusText(response.statusText);
+      const data = await response.json();
+      setIsLoading(false);
+      return data;
     } catch (error) {
-      console.error(error);
+      setIsLoading(false);
+      setError(error);
     }
   }
 
   const value = {
     words,
     setWords,
-    index,
-    setIndex,
     addWord,
     updateWord,
     deleteWord,
   };
 
-  useEffect(() => {
-    getWords();
-  }, []);
+  if (isLoading === true) return <Loader></Loader>;
 
-  async function getWords() {
-    const wordsArr = await GET.getWords();
-    setWords(wordsArr);
-    setError(!wordsArr);
+  if (errorStatus !== 200 || words === null || error !== "") {
+    console.log(error);
+    return (
+      <Error
+        text={"Код ответа:"}
+        error={error}
+        status={errorStatus}
+        errorStatusText={errorStatusText}
+      />
+    );
   }
-
-  if (!words) return <Loader></Loader>;
-
-  if (error)
-    return <Error status={error.status} statusText={error.statusText}></Error>;
 
   return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
 }

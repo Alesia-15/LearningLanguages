@@ -5,11 +5,10 @@ function Error(props) {
   return (
     <div className="error">
       <h1>Whoops!</h1>
-      <h2>404</h2>
-      <p>Страница не найдена</p>
-      <p>
-        {props.status} {props.statusText}
-      </p>
+      <p>{props.text}</p>
+      <h2>{props.status}</h2>
+      <p>{props.errorStatusText}</p>
+      <p>{props.error}</p>
     </div>
   );
 }

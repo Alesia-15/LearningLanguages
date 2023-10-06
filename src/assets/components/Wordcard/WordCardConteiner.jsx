@@ -6,7 +6,8 @@ import arrowRight from "../../images/arrowRight.png";
 import { MyContext } from "../Context";
 
 function WordCardConteiner() {
-  let { words, index, setIndex } = useContext(MyContext);
+  let { words } = useContext(MyContext);
+  let [index, setIndex] = useState(0);
 
   // Переключение карточек
   const forwardClick = () => {

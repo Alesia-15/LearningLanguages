@@ -8,7 +8,7 @@ import { MyContext } from "../Context";
 //import data from "../../data.json";
 
 function Wordlist(props) {
-  let { words, setWords, updateWord, deleteWord } = useContext(MyContext);
+  let { updateWord, deleteWord } = useContext(MyContext);
 
   // открытие / закрытие режима редактирования
   const [pressed, setPressed] = useState(props.pressed || false);
