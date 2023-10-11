@@ -92,7 +92,8 @@ const WordListConteiner = inject(["WordsStore"])(
     };
 
     if (WordsStore.isLoading === true) {
-      return <Loader />;
+      <Loader />;
+      WordsStore.getWords();
     }
 
     if (
@@ -176,16 +177,17 @@ const WordListConteiner = inject(["WordsStore"])(
             <p>Тема</p>
             <p> </p>
           </div>
-          {WordsStore.words.map((word) => (
-            <WordList
-              key={word.id}
-              id={word.id}
-              english={word.english}
-              transcription={word.transcription}
-              russian={word.russian}
-              tags={word.tags}
-            />
-          ))}
+          {Array.isArray(WordsStore.words) &&
+            WordsStore.words.map((word) => (
+              <WordList
+                key={word.id}
+                id={word.id}
+                english={word.english}
+                transcription={word.transcription}
+                russian={word.russian}
+                tags={word.tags}
+              />
+            ))}
         </div>
       </div>
     );
