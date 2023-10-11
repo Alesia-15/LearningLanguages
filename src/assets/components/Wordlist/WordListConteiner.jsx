@@ -178,6 +178,25 @@ function WordListConteiner() {
           <p>{validation}</p>
         </div>
       </div>
+      <div className="listContainer">
+        <div id="head" className="row">
+          <p>Слово</p>
+          <p>Транскрипция</p>
+          <p>Перевод</p>
+          <p>Тема</p>
+          <p></p>
+        </div>
+
+        {data.map((words) => (
+          <WordList
+            key={words.id}
+            english={words.english}
+            transcription={words.transcription}
+            russian={words.russian}
+            topic={words.topic}
+          />
+        ))}
+      </div>
     </div>
   );
 }

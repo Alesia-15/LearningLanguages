@@ -8,6 +8,13 @@
     font-size: 45px;
     color: $colorDarkRed;
   }
+  .listContainer.new {
+    border: none;
+    background-color: $colorLight;
+    .newWordContainer .btn button {
+      background-color: $colorLight;
+    }
+  }
   .listContainer {
     padding: 15px 10px;
     color: $colorDarkRed;
