@@ -40,7 +40,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/list" element={<WordListConteiner />} />
             <Route path="/game" element={<WordCardConteiner />} />
-            <Route path="*" element={<Error />} />
+            <Route path="*" element={<Error text={`Страница не найдена`} />} />
           </Routes>
         </div>
       </main>

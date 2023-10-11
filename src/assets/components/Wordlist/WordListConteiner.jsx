@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import data from "../../data.json";
+import React, { useState, useContext } from "react";
+//import data from "../../data.json";
 import WordList from "./Wordlist";
 import save from "../../images/save.png";
 import close from "../../images/close.png";
+import { MyContext } from "../Context";
 
 function WordListConteiner() {
-  // кнопка newWord
+  const { words, addWord } = useContext(MyContext);
+
+  // кнопка Добавить новое слово
   const [createNewWord, setCreateNewWord] = useState(true);
   const handleClickNewWord = () => {
     setCreateNewWord(!createNewWord);
@@ -16,7 +19,7 @@ function WordListConteiner() {
     english: "",
     transcription: "",
     russian: "",
-    topic: "",
+    tags: "",
   });
 
   // Обработчик изменения для всех полей ввода
@@ -30,16 +33,15 @@ function WordListConteiner() {
 
   // состояние валидации
   let [validation, setValidation] = useState("");
-
   // кнопка сохранить
-  let [objWords, setObjWords] = useState([]);
+  let [objWord, setObjWord] = useState([]);
   const handleClickSave = (e) => {
     e.preventDefault();
     if (
       formValues.english === "" ||
       formValues.transcription === "" ||
       formValues.russian === "" ||
-      formValues.topic === ""
+      formValues.tags === ""
     ) {
       setValidation((validation = "Заполнены не все поля!"));
     } else if (formValues.english.match(/^[A-Za-z]+$/gi) === null) {
@@ -59,20 +61,25 @@ function WordListConteiner() {
         (validation = "Перевод должен содержать только русские буквы!")
       );
     } else {
-      setObjWords(
-        (objWords = {
+      setObjWord(
+        (objWord = {
+          id: Number(words[words.length - 1].id) + 1,
           english: formValues.english,
           transcription: formValues.transcription,
           russian: formValues.russian,
-          topic: formValues.topic,
+          tags: formValues.tags,
         })
       );
-      console.log(objWords);
+      //words.push(objWord);
+      addWord(objWord);
+      console.log(objWord);
       setCreateNewWord(!createNewWord);
-      setFormValues("");
+      //setFormValues("");
       setValidation("");
     }
   };
+
+  //console.log(Number(words[words.length - 1].id) + 1);
 
   //кнопка закрыть
   const handleClickOpenClose = (e) => {
@@ -84,7 +91,7 @@ function WordListConteiner() {
   return (
     <div className="wordListContainer">
       <h2 id="list">Список слов</h2>
-      <div className="listContainer new">
+      <div className="listContainer">
         <div className="newWordContainer">
           {createNewWord ? (
             <button className="newWord" onClick={handleClickNewWord}>
@@ -98,7 +105,11 @@ function WordListConteiner() {
                 name="english"
                 placeholder="Слово"
                 onChange={handleInputChange}
-                className={`${formValues.english === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.english === "" || formValues.english === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <input
                 type="text"
@@ -106,7 +117,12 @@ function WordListConteiner() {
                 name="transcription"
                 placeholder="[Транскрипция]"
                 onChange={handleInputChange}
-                className={`${formValues.transcription === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.transcription === "" ||
+                  formValues.transcription === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <input
                 type="text"
@@ -114,15 +130,23 @@ function WordListConteiner() {
                 name="russian"
                 placeholder="Перевод"
                 onChange={handleInputChange}
-                className={`${formValues.russian === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.russian === "" || formValues.russian === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <input
                 type="text"
-                value={formValues.topic}
-                name="topic"
+                value={formValues.tags}
+                name="tags"
                 placeholder="Тема"
                 onChange={handleInputChange}
-                className={`${formValues.topic === "" ? "empty" : ""}`}
+                className={`${
+                  formValues.tags === "" || formValues.tags === undefined
+                    ? "empty"
+                    : ""
+                }`}
               />
               <div className="btn">
                 <button onClick={handleClickSave}>
@@ -136,8 +160,6 @@ function WordListConteiner() {
           )}
           <p>{validation}</p>
         </div>
-      </div>
-      <div className="listContainer">
         <div id="head" className="row">
           <p>Слово</p>
           <p>Транскрипция</p>
@@ -145,14 +167,14 @@ function WordListConteiner() {
           <p>Тема</p>
           <p></p>
         </div>
-
-        {data.map((words) => (
+        {words.map((word) => (
           <WordList
-            key={words.id}
-            english={words.english}
-            transcription={words.transcription}
-            russian={words.russian}
-            topic={words.topic}
+            key={word.id}
+            id={word.id}
+            english={word.english}
+            transcription={word.transcription}
+            russian={word.russian}
+            tags={word.tags}
           />
         ))}
       </div>

@@ -1,24 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./wordlist.scss";
 import save from "../../images/save.png";
 import pen from "../../images/pen.png";
 import del from "../../images/delete.svg";
 import close from "../../images/close.png";
+import { MyContext } from "../Context";
+//import data from "../../data.json";
 
 function Wordlist(props) {
+  let { updateWord, deleteWord } = useContext(MyContext);
+
   // открытие / закрытие режима редактирования
   const [pressed, setPressed] = useState(props.pressed || false);
-  const handleClickOpenClose = () => {
-    setPressed(!pressed);
-  };
 
   // состояние инпутов
   // Создаем объект состояния для хранения значений полей ввода
   const [formValues, setFormValues] = useState({
+    id: props.id,
     english: props.english,
     transcription: props.transcription,
     russian: props.russian,
-    topic: props.topic,
+    tags: props.tags,
   });
 
   // Обработчик изменения для всех полей ввода
@@ -30,6 +32,7 @@ function Wordlist(props) {
       [name]: value, // обновляем значение для конкретного поля ввода
     }));
     handleChangeSave();
+    //setIndex(props.id);
   };
 
   // проверка инпутов на пустоту
@@ -38,7 +41,7 @@ function Wordlist(props) {
       formValues.english === "" ||
       formValues.transcription === "" ||
       formValues.russian === "" ||
-      formValues.topic === ""
+      formValues.tags === ""
     ) {
       return true;
     } else {
@@ -47,15 +50,14 @@ function Wordlist(props) {
   };
 
   // кнопка сохранить
-  let [objWords, setObjWords] = useState([]);
+  let [objWord, setObjWord] = useState([]);
   let [disabledSave, setDisabledSave] = useState(emptyInput);
-
   function handleChangeSave() {
     if (
       formValues.english === "" ||
       formValues.transcription === "" ||
       formValues.russian === "" ||
-      formValues.topic === ""
+      formValues.tags === ""
     ) {
       setDisabledSave((disabledSave = true));
     } else {
@@ -65,16 +67,38 @@ function Wordlist(props) {
 
   let handleClickSave = (e) => {
     e.preventDefault();
-    setObjWords(
-      (objWords = {
+    setObjWord(
+      (objWord = {
+        id: props.id,
         english: formValues.english,
         transcription: formValues.transcription,
         russian: formValues.russian,
-        topic: formValues.topic,
+        tags: formValues.tags,
       })
     );
-    console.log(objWords);
+    updateWord(objWord);
     setPressed(!pressed);
+    //console.log(words);
+  };
+
+  // Удаление
+  let handleClickDelete = () => {
+    /* let filteredArray = words.filter(
+      (value) => value.english !== props.english
+    );
+    words = filteredArray; */
+    setObjWord(
+      (objWord = {
+        id: props.id,
+        english: formValues.english,
+        transcription: formValues.transcription,
+        russian: formValues.russian,
+        tags: formValues.tags,
+      })
+    );
+    //setWords(words);
+    console.log(objWord);
+    deleteWord(objWord);
   };
 
   return (
@@ -86,34 +110,55 @@ function Wordlist(props) {
             defaultValue={props.english}
             name="english"
             onChange={handleInputChange}
-            className={`${formValues.english === "" ? "empty" : ""}`}
+            className={`${
+              formValues.english === "" || formValues.english === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <input
             type="text"
             defaultValue={props.transcription}
             name="transcription"
             onChange={handleInputChange}
-            className={`${formValues.transcription === "" ? "empty" : ""}`}
+            className={`${
+              formValues.transcription === "" ||
+              formValues.transcription === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <input
             type="text"
             defaultValue={props.russian}
             name="russian"
             onChange={handleInputChange}
-            className={`${formValues.russian === "" ? "empty" : ""}`}
+            className={`${
+              formValues.russian === "" || formValues.russian === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <input
             type="text"
-            defaultValue={props.topic}
-            name="topic"
+            defaultValue={props.tags}
+            name="tags"
             onChange={handleInputChange}
-            className={`${formValues.topic === "" ? "empty" : ""}`}
+            className={`${
+              formValues.tags === "" || formValues.tags === undefined
+                ? "empty"
+                : ""
+            }`}
           />
           <div className="btn">
             <button onClick={handleClickSave} disabled={disabledSave}>
               <img src={save} alt="save" />
             </button>
-            <button onClick={handleClickOpenClose}>
+            <button
+              onClick={() => {
+                setPressed(!pressed);
+              }}
+            >
               <img src={close} alt="close"></img>
             </button>
           </div>
@@ -123,12 +168,16 @@ function Wordlist(props) {
           <p>{props.english}</p>
           <p>{props.transcription}</p>
           <p>{props.russian}</p>
-          <p>{props.topic}</p>
+          <p>{props.tags}</p>
           <div>
-            <button onClick={handleClickOpenClose}>
+            <button
+              onClick={() => {
+                setPressed(!pressed);
+              }}
+            >
               <img src={pen} alt="pen"></img>
             </button>
-            <button>
+            <button onClick={handleClickDelete}>
               <img src={del} alt="del"></img>
             </button>
           </div>
