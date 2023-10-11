@@ -92,23 +92,6 @@ function WordListConteiner() {
     <div className="wordListContainer">
       <h2 id="list">Список слов</h2>
       <div className="listContainer">
-        <div id="head" className="row">
-          <p>Слово</p>
-          <p>Транскрипция</p>
-          <p>Перевод</p>
-          <p>Тема</p>
-          <p></p>
-        </div>
-        {words.map((word) => (
-          <WordList
-            key={word.id}
-            id={word.id}
-            english={word.english}
-            transcription={word.transcription}
-            russian={word.russian}
-            tags={word.tags}
-          />
-        ))}
         <div className="newWordContainer">
           {createNewWord ? (
             <button className="newWord" onClick={handleClickNewWord}>
@@ -177,8 +160,6 @@ function WordListConteiner() {
           )}
           <p>{validation}</p>
         </div>
-      </div>
-      <div className="listContainer">
         <div id="head" className="row">
           <p>Слово</p>
           <p>Транскрипция</p>
@@ -186,14 +167,14 @@ function WordListConteiner() {
           <p>Тема</p>
           <p></p>
         </div>
-
-        {data.map((words) => (
+        {words.map((word) => (
           <WordList
-            key={words.id}
-            english={words.english}
-            transcription={words.transcription}
-            russian={words.russian}
-            topic={words.topic}
+            key={word.id}
+            id={word.id}
+            english={word.english}
+            transcription={word.transcription}
+            russian={word.russian}
+            tags={word.tags}
           />
         ))}
       </div>
