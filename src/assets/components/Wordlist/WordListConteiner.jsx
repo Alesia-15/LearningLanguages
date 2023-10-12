@@ -70,16 +70,11 @@ function WordListConteiner() {
           tags: formValues.tags,
         })
       );
-      //words.push(objWord);
       addWord(objWord);
-      console.log(objWord);
       setCreateNewWord(!createNewWord);
-      //setFormValues("");
       setValidation("");
     }
   };
-
-  //console.log(Number(words[words.length - 1].id) + 1);
 
   //кнопка закрыть
   const handleClickOpenClose = (e) => {

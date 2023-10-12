@@ -1,7 +1,5 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
-//import GET from "./GET";
-//import data from "../data.json";
 import Error from "./Error/Error";
 import Loader from "./Loader/Loader";
 
@@ -20,7 +18,6 @@ function MyContextComponent({ children }) {
       const response = await fetch(
         "https://itgirlschool.justmakeit.ru/api/words"
       );
-      console.log(response.statusText);
       setErrorStatus(response.status);
       setErrorStatusText(response.statusText);
       const data = await response.json();
@@ -120,7 +117,6 @@ function MyContextComponent({ children }) {
   if (isLoading === true) return <Loader></Loader>;
 
   if (errorStatus !== 200 || words === null || error !== "") {
-    console.log(error);
     return (
       <Error
         text={"Код ответа:"}

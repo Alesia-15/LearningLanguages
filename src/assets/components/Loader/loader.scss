@@ -1,3 +1,5 @@
+@import "./src/assets/style/variables.scss";
+
 .container.loader {
   height: 100vh;
   display: flex;
@@ -37,7 +39,7 @@
       -ms-animation: cssload-rotate-one 2.5s linear infinite;
       -webkit-animation: cssload-rotate-one 2.5s linear infinite;
       -moz-animation: cssload-rotate-one 2.5s linear infinite;
-      border-bottom: 3px solid #a5011e;
+      border-bottom: 3px solid $colorRed;
     }
 
     .cssload-inner.cssload-two {
@@ -48,7 +50,7 @@
       -ms-animation: cssload-rotate-two 2.5s linear infinite;
       -webkit-animation: cssload-rotate-two 2.5s linear infinite;
       -moz-animation: cssload-rotate-two 2.5s linear infinite;
-      border-right: 3px solid #a5011e;
+      border-right: 3px solid $colorRed;
     }
 
     .cssload-inner.cssload-three {
@@ -59,7 +61,7 @@
       -ms-animation: cssload-rotate-three 2.5s linear infinite;
       -webkit-animation: cssload-rotate-three 2.5s linear infinite;
       -moz-animation: cssload-rotate-three 2.5s linear infinite;
-      border-top: 3px solid #a5011e;
+      border-top: 3px solid $colorRed;
     }
   }
 }

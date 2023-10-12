@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./assets/style/App.scss";
 import logo from "./assets/images/logo.png";
+import profile from "./assets/images/profile.png";
 import Home from "./assets/components/Home/Home";
 import WordListConteiner from "./assets/components/Wordlist/WordListConteiner";
 import WordCardConteiner from "./assets/components/Wordcard/WordCardConteiner";
@@ -27,7 +28,7 @@ function App() {
               </li>
               <li>
                 <Link to="/">
-                  <img src={logo} alt="logo" />
+                  <img src={profile} alt="profile" />
                 </Link>
               </li>
             </ul>

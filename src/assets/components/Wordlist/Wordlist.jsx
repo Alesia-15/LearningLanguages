@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./wordlist.scss";
 import save from "../../images/save.png";
 import pen from "../../images/pen.png";
-import del from "../../images/delete.svg";
+import del from "../../images/delete.png";
 import close from "../../images/close.png";
 import { MyContext } from "../Context";
 //import data from "../../data.json";
@@ -32,7 +32,6 @@ function Wordlist(props) {
       [name]: value, // обновляем значение для конкретного поля ввода
     }));
     handleChangeSave();
-    //setIndex(props.id);
   };
 
   // проверка инпутов на пустоту
@@ -78,15 +77,10 @@ function Wordlist(props) {
     );
     updateWord(objWord);
     setPressed(!pressed);
-    //console.log(words);
   };
 
   // Удаление
   let handleClickDelete = () => {
-    /* let filteredArray = words.filter(
-      (value) => value.english !== props.english
-    );
-    words = filteredArray; */
     setObjWord(
       (objWord = {
         id: props.id,
@@ -96,8 +90,6 @@ function Wordlist(props) {
         tags: formValues.tags,
       })
     );
-    //setWords(words);
-    console.log(objWord);
     deleteWord(objWord);
   };
 
