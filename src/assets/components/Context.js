@@ -12,12 +12,12 @@ function MyContextComponent({ children }) {
   let [errorStatus, setErrorStatus] = useState("");
   let [errorStatusText, setErrorStatusText] = useState("");
 
+  const url = "/api/words";
+
   async function getWords() {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        "https://itgirlschool.justmakeit.ru/api/words"
-      );
+      const response = await fetch(url);
       setErrorStatus(response.status);
       setErrorStatusText(response.statusText);
       const data = await response.json();
@@ -37,7 +37,7 @@ function MyContextComponent({ children }) {
   async function addWord(newWord) {
     setIsLoading(true);
     try {
-      const response = await fetch(`/api/words/add`, {
+      const response = await fetch(`${url}/add`, {
         method: "POST",
         headers: {
           "Content-type": "application/json; charset=UTF-8",
@@ -59,16 +59,13 @@ function MyContextComponent({ children }) {
   async function updateWord(editWord) {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://itgirlschool.justmakeit.ru/api/words/${editWord.id}/update`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-          body: JSON.stringify(editWord),
-        }
-      );
+      const response = await fetch(`${url}/${editWord.id}/update`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(editWord),
+      });
       getWords();
       setErrorStatus(response.status);
       setErrorStatusText(response.statusText);
@@ -84,16 +81,13 @@ function MyContextComponent({ children }) {
   async function deleteWord(removeWord) {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://itgirlschool.justmakeit.ru/api/words/${removeWord.id}/delete`,
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-          },
-          body: JSON.stringify(removeWord),
-        }
-      );
+      const response = await fetch(`${url}/${removeWord.id}/delete`, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify(removeWord),
+      });
       getWords();
       setErrorStatus(response.status);
       setErrorStatusText(response.statusText);
