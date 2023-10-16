@@ -12,7 +12,7 @@ function MyContextComponent({ children }) {
   let [errorStatus, setErrorStatus] = useState("");
   let [errorStatusText, setErrorStatusText] = useState("");
 
-  const url = "/api/words";
+  const url = "https://itgirlschool.justmakeit.ru/api/words";
 
   async function getWords() {
     setIsLoading(true);
