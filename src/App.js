@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./assets/style/App.scss";
 import logo from "./assets/images/logo.png";
 import profile from "./assets/images/profile.png";

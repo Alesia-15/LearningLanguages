@@ -2,6 +2,7 @@
   "name": "project_react",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://itgirlschool.justmakeit.ru",
   "homepage": "https://alesia-15.github.io/LearningLanguages/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
