@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/LearningLanguages/static/css/main.ac555391.css",
-    "main.js": "/LearningLanguages/static/js/main.2addd2be.js",
+    "main.js": "/LearningLanguages/static/js/main.9bfb2d3c.js",
     "static/media/home.png": "/LearningLanguages/static/media/home.557b9da47bd8e49132b2.png",
     "index.html": "/LearningLanguages/index.html",
     "main.ac555391.css.map": "/LearningLanguages/static/css/main.ac555391.css.map",
-    "main.2addd2be.js.map": "/LearningLanguages/static/js/main.2addd2be.js.map"
+    "main.9bfb2d3c.js.map": "/LearningLanguages/static/js/main.9bfb2d3c.js.map"
   },
   "entrypoints": [
     "static/css/main.ac555391.css",
-    "static/js/main.2addd2be.js"
+    "static/js/main.9bfb2d3c.js"
   ]
 }
